@@ -11,7 +11,7 @@
   },
   {
     "__type__": "cc.Scene",
-    "_name": "scene-2d",
+    "_name": "Game",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": null,
@@ -52,7 +52,7 @@
     },
     "autoReleaseAssets": false,
     "_globals": {
-      "__id__": 48
+      "__id__": 49
     },
     "_id": "de5f9206-2e27-4ce4-9533-8afe4d0943ac"
   },
@@ -78,13 +78,13 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 45
-      },
-      {
         "__id__": 46
       },
       {
         "__id__": 47
+      },
+      {
+        "__id__": 48
       }
     ],
     "_prefab": null,
@@ -1525,6 +1525,9 @@
     "_components": [
       {
         "__id__": 44
+      },
+      {
+        "__id__": 45
       }
     ],
     "_prefab": null,
@@ -1559,7 +1562,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "tile_0000",
+    "_name": "player",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
@@ -1689,6 +1692,22 @@
     "_id": "7e+42/XFhNo4izR+C6t3uz"
   },
   {
+    "__type__": "1579aJbwbxCiI5dKszvwkHG",
+    "_name": "",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "node": {
+      "__id__": 40
+    },
+    "_enabled": true,
+    "__prefab": null,
+    "player": {
+      "__id__": 41
+    },
+    "moveSpeed": 600,
+    "_id": "2f0qNHAsdI/Yrsy/WW3O2K"
+  },
+  {
     "__type__": "cc.UITransform",
     "_name": "",
     "_objFlags": 0,
@@ -1759,28 +1778,28 @@
   {
     "__type__": "cc.SceneGlobals",
     "ambient": {
-      "__id__": 49
-    },
-    "shadows": {
       "__id__": 50
     },
-    "_skybox": {
+    "shadows": {
       "__id__": 51
     },
-    "fog": {
+    "_skybox": {
       "__id__": 52
     },
-    "octree": {
+    "fog": {
       "__id__": 53
     },
-    "skin": {
+    "octree": {
       "__id__": 54
     },
-    "lightProbeInfo": {
+    "skin": {
       "__id__": 55
     },
-    "postSettings": {
+    "lightProbeInfo": {
       "__id__": 56
+    },
+    "postSettings": {
+      "__id__": 57
     },
     "bakedWithStationaryMainLight": false,
     "bakedWithHighpLightmap": false
