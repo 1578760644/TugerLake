@@ -1,4 +1,4 @@
-import { _decorator, Component, EventKeyboard, EventTouch, Input, input, KeyCode, Node, Vec2, Vec3 } from 'cc';
+import { _decorator, clamp, Component, EventKeyboard, EventTouch, Input, input, KeyCode, Node, Vec2, Vec3 } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('PlayerManager')
@@ -29,6 +29,19 @@ export class PlayerManager extends Component {
     }
 
     update(deltaTime: number) {
+        this.applyMovement(deltaTime);
+    }
+
+    protected onDestroy(): void {
+        input.off(Input.EventType.TOUCH_MOVE, this.onTouchMove, this)
+        input.off(Input.EventType.TOUCH_END, this.onTouchEnd, this);
+        input.off(Input.EventType.TOUCH_CANCEL, this.onTouchEnd, this);
+
+        input.off(Input.EventType.KEY_DOWN, this.onKeyDown, this);
+        input.off(Input.EventType.KEY_UP, this.onKeyUp, this);
+    }
+
+    private applyMovement(deltaTime: number) {
         const inputX = (this._keys.d ? 1 : 0) - (this._keys.a ? 1 : 0);
         const inputY = (this._keys.w ? 1 : 0) - (this._keys.s ? 1 : 0);
         //判断是否有键盘输入
@@ -48,24 +61,24 @@ export class PlayerManager extends Component {
             this._moveDirection.set(0, 0);
         }
 
+
+        //限制移动范围
+        const minX = -360;
+        const maxX = 360;
+        const minY = -640;
+        const maxY = 640;
+
+
         //统一移动
         const playerPos = this.player.getPosition();
         const offsetX = this._moveDirection.x * this.moveSpeed * deltaTime;
         const offsetY = this._moveDirection.y * this.moveSpeed * deltaTime;
-        this.player.setPosition(playerPos.x + offsetX, playerPos.y + offsetY);
+        const playerX = clamp((playerPos.x + offsetX), minX, maxX);
+        const playerY = clamp((playerPos.y + offsetY), minY, maxY);
+        this.player.setPosition(playerX, playerY);
 
         // 4. 重置触摸移动标记（为下一帧准备）
         this._touchMovedThisFrame = false;
-
-    }
-
-    protected onDestroy(): void {
-        input.off(Input.EventType.TOUCH_MOVE, this.onTouchMove, this)
-        input.off(Input.EventType.TOUCH_END, this.onTouchEnd, this);
-        input.off(Input.EventType.TOUCH_CANCEL, this.onTouchEnd, this);
-
-        input.off(Input.EventType.KEY_DOWN, this.onKeyDown, this);
-        input.off(Input.EventType.KEY_UP, this.onKeyUp, this);
     }
 
     private onTouchMove(event: EventTouch) {
