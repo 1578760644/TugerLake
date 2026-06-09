@@ -6,7 +6,7 @@ export class PlayerManager extends Component {
     @property(Node)
     public player: Node | null = null;
     @property
-    public moveSpeed: number = 300; // 像素/秒
+    public moveSpeed: number = 600; // 像素/秒
 
     private _moveDirection: Vec2 = new Vec2();
     //用于复用计算，避免每次实例化生成
@@ -14,13 +14,11 @@ export class PlayerManager extends Component {
 
     private _keys = { w: false, a: false, s: false, d: false };
 
-    //键盘操作优先与触摸操作
-    private _isTouching: boolean = false;
-    //避免拖动移动的时候，突然停止，没有把机制方向清零
-    private _touchMovedThisFrame: boolean = false;
-
+    private _activeTouches: Set<number> = new Set(); // 当前活跃的触摸点ID
+    private _hasMovedThisFrame: boolean = false;    // 本帧是否有有效移动
 
     protected onLoad(): void {
+        input.on(Input.EventType.TOUCH_START, this.onTouchStart, this);
         input.on(Input.EventType.TOUCH_MOVE, this.onTouchMove, this);
         input.on(Input.EventType.TOUCH_END, this.onTouchEnd, this);
         input.on(Input.EventType.TOUCH_CANCEL, this.onTouchEnd, this);
@@ -42,6 +40,7 @@ export class PlayerManager extends Component {
     }
 
     private applyMovement(deltaTime: number) {
+
         const inputX = (this._keys.d ? 1 : 0) - (this._keys.a ? 1 : 0);
         const inputY = (this._keys.w ? 1 : 0) - (this._keys.s ? 1 : 0);
         //判断是否有键盘输入
@@ -51,8 +50,8 @@ export class PlayerManager extends Component {
             //键盘方向写入
             this._tempVec2.set(inputX, inputY).normalize();
             this._moveDirection.set(this._tempVec2);
-        } else if (this._isTouching) {
-            if (!this._touchMovedThisFrame) {
+        } else if (this._activeTouches.size > 0) { // 至少有一个手指在屏幕上
+            if (!this._hasMovedThisFrame) {
                 // 手指按着但本帧没动 → 停止
                 this._moveDirection.set(0, 0);
             }
@@ -76,27 +75,42 @@ export class PlayerManager extends Component {
         const playerX = clamp((playerPos.x + offsetX), minX, maxX);
         const playerY = clamp((playerPos.y + offsetY), minY, maxY);
         this.player.setPosition(playerX, playerY);
+        
+        //重置移动标记，让下一帧重新检测
+        this._hasMovedThisFrame = false;
+    }
 
-        // 4. 重置触摸移动标记（为下一帧准备）
-        this._touchMovedThisFrame = false;
+    private onTouchStart(event: EventTouch) {
+        this._activeTouches.add(event.getID());
+        this._hasMovedThisFrame = false;   // 新按下，重置移动标记
     }
 
     private onTouchMove(event: EventTouch) {
-        this._isTouching = true;
-        this._touchMovedThisFrame = true;
+        // 忽略不在活跃集合中的触摸点（理论上不会发生，安全起见）
+        if (!this._activeTouches.has(event.getID())) return;
+
         event.getDelta(this._tempVec2);
 
+        // 过滤极短移动，防止静止时的传感器噪声
+        if (this._tempVec2.length() < 2.0) return;
+
+        this._hasMovedThisFrame = true;
         //将当前向量归一化
         this._tempVec2.normalize();
         //直接在触摸事件发生的时候处理位置更新
         this._moveDirection.set(this._tempVec2)
     }
     private onTouchEnd(event: EventTouch) {
-        this._isTouching = false;
-        this._touchMovedThisFrame = false;
-        this._moveDirection.set(0, 0);
+        this._activeTouches.delete(event.getID());
+        // 所有手指都离开屏幕
+        if (this._activeTouches.size === 0) {
+            console.log('touch end fired');
+            this._hasMovedThisFrame = false;
+            this._moveDirection.set(0, 0);
+        }
     }
 
+    //用于检测按键是否生效，实际归一化和移动等操作在update里实现
     private onKeyDown(event: EventKeyboard) {
         switch (event.keyCode) {
             case KeyCode.KEY_W: this._keys.w = true; break;
