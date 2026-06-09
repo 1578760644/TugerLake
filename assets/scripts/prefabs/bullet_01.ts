@@ -19,21 +19,20 @@ export class Bullet_01 extends Component {
 
     checkCollision() {
         //取出敌人引用做空值保护
-        const enemy = BulletManager.inst?.testEnemy;
-        if (!enemy || !enemy.isValid) return;
-
-        const bulletTransform = this.node.getComponent(UITransform);
-        const enemyTransform = enemy.getComponent(UITransform);
-        if (!bulletTransform || !enemyTransform) return;
-
-        const bulletPos = this.node.getWorldPosition();
-        const enemyPos = enemy.getWorldPosition();
-        const bulletRadius = Math.max(bulletTransform.width, bulletTransform.height) * 0.5;
-        const enemyRadius = Math.max(enemyTransform.width, enemyTransform.height) * 0.5;
-        const distance = Vec3.distance(bulletPos, enemyPos);
-        
-        if (distance < bulletRadius + enemyRadius) {
-            this.node.destroy();
+        const activeEnemy = BulletManager.inst?.activeEnemies;
+        for(const enemy of activeEnemy ){
+            if (!enemy || !enemy.isValid) return;
+            const bulletTransform = this.node.getComponent(UITransform);
+            const enemyTransform = enemy.getComponent(UITransform);
+            if (!bulletTransform || !enemyTransform) return;
+            const bulletPos = this.node.getWorldPosition();
+            const enemyPos = enemy.getWorldPosition();
+            const bulletRadius = Math.max(bulletTransform.width, bulletTransform.height) * 0.5;
+            const enemyRadius = Math.max(enemyTransform.width, enemyTransform.height) * 0.5;
+            const distance = Vec3.distance(bulletPos, enemyPos);
+            if (distance < bulletRadius + enemyRadius) {
+                this.node.destroy();
+            }
         }
     }
 

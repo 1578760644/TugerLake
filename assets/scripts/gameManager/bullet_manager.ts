@@ -13,8 +13,11 @@ export class BulletManager extends Component {
     @property(Node)
     public muzzle: Node = null;
 
+    @property([Node])
+    public activeEnemies: Node[] = [];
+
     @property(Node)
-    public testEnemy: Node = null;
+    public player: Node = null;
 
     @property
     public fireInterval: number = 0.3;
@@ -59,11 +62,20 @@ export class BulletManager extends Component {
     }
 
     private findNearestEnemy(): Node | null {
-        // 临时实现：仅返回测试敌人，实际应遍历活跃敌人列表
-        if (this.testEnemy && this.testEnemy.isValid) {
-            return this.testEnemy;
+        let nearestNode: Node = null;
+        let minDist: number = Infinity;
+
+        for (const enemyNode of this.activeEnemies) {
+            if (!enemyNode || !enemyNode.isValid) continue;
+            const enemyPos = enemyNode.getWorldPosition();
+            const playerPos = this.player.getWorldPosition();
+            const dist = Vec3.distance(enemyPos, playerPos);
+            if (dist < minDist) {
+                minDist = dist;
+                nearestNode = enemyNode;
+            }
         }
-        return null;
+        return nearestNode;
     }
 }
 
