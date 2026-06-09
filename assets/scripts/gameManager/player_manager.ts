@@ -104,7 +104,7 @@ export class PlayerManager extends Component {
         this._activeTouches.delete(event.getID());
         // 所有手指都离开屏幕
         if (this._activeTouches.size === 0) {
-            console.log('touch end fired');
+            console.log('touch end ');
             this._hasMovedThisFrame = false;
             this._moveDirection.set(0, 0);
         }
