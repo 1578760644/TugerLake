@@ -1,5 +1,7 @@
 import { _decorator, Component, instantiate, Node, Prefab, Vec3 } from 'cc';
 import { Bullet_01 } from '../prefabs/bullet_01';
+import { EnemyManager } from './enemy_manager';
+import { GameManager } from './game_manager';
 const { ccclass, property } = _decorator;
 
 @ccclass('BulletManager')
@@ -13,14 +15,8 @@ export class BulletManager extends Component {
     @property(Node)
     public muzzle: Node = null;
 
-    @property([Node])
-    public activeEnemies: Node[] = [];
-
-    @property(Node)
-    public player: Node = null;
-
     @property
-    public fireInterval: number = 0.3;
+    public fireInterval: number = 0.2;
 
     private _fireTimer: number = 0;
     private _tempVec3: Vec3 = new Vec3(); //复用向量
@@ -65,10 +61,10 @@ export class BulletManager extends Component {
         let nearestNode: Node = null;
         let minDist: number = Infinity;
 
-        for (const enemyNode of this.activeEnemies) {
+        for (const enemyNode of EnemyManager.inst.getActiveEnemies()) {
             if (!enemyNode || !enemyNode.isValid) continue;
             const enemyPos = enemyNode.getWorldPosition();
-            const playerPos = this.player.getWorldPosition();
+            const playerPos = GameManager.inst.player.getWorldPosition();
             const dist = Vec3.distance(enemyPos, playerPos);
             if (dist < minDist) {
                 minDist = dist;
