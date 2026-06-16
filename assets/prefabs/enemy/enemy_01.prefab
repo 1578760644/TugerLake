@@ -147,12 +147,11 @@
     "__prefab": {
       "__id__": 7
     },
-    "player": null,
     "_id": ""
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "56b4QaUC1LRbrYrMzLgGGY"
+    "fileId": "abEy2L9n9KFock/PqP/SK6"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -163,6 +162,7 @@
       "__id__": 0
     },
     "fileId": "dc5bzA9cxKaq/Pm896XEiY",
+    "instance": null,
     "targetOverrides": null
   }
 ]
