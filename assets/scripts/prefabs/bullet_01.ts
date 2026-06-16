@@ -1,13 +1,13 @@
 import { _decorator, Component, Node, UITransform, Vec2, Vec3 } from 'cc';
 import { BulletManager } from '../gameManager/bullet_manager';
 import { EnemyManager } from '../gameManager/enemy_manager';
-import { Enemy_01 } from './enemy_01';
+import { EnemyBase } from '../base/enemy_base';
 const { ccclass, property } = _decorator;
 
 @ccclass('Bullet_01 ')
 export class Bullet_01 extends Component {
     @property
-    private _speed: number = 600;
+    private _speed: number = 400;
 
     private _direction: Vec3 = new Vec3(1, 0, 0);
 
@@ -35,7 +35,7 @@ export class Bullet_01 extends Component {
             const distance = Vec3.distance(bulletPos, enemyPos);
 
             if (distance < bulletRadius + enemyRadius) {
-                enemy.getComponent(Enemy_01).takeDamage(1);
+                enemy.getComponent(EnemyBase).takeDamage(1);
                 this.node.destroy();
 
                 break; //先扣血再销毁，最后跳出当前循环，因为子弹已经不存在了
