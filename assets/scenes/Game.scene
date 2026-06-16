@@ -23,7 +23,7 @@
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 67
+      "__id__": 66
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -54,7 +54,7 @@
     },
     "autoReleaseAssets": false,
     "_globals": {
-      "__id__": 68
+      "__id__": 67
     },
     "_id": "de5f9206-2e27-4ce4-9533-8afe4d0943ac"
   },
@@ -80,25 +80,25 @@
         "__id__": 48
       },
       {
-        "__id__": 56
+        "__id__": 52
       },
       {
-        "__id__": 53
+        "__id__": 57
       },
       {
-        "__id__": 61
+        "__id__": 60
       }
     ],
     "_active": true,
     "_components": [
       {
+        "__id__": 63
+      },
+      {
         "__id__": 64
       },
       {
         "__id__": 65
-      },
-      {
-        "__id__": 66
       }
     ],
     "_prefab": null,
@@ -1927,154 +1927,12 @@
         "__expectedType__": "cc.Prefab"
       },
       {
-        "__uuid__": "5e070954-2d9c-44d8-8765-3107205471f9",
+        "__uuid__": "2420f268-3f4b-440a-9463-3295f2025b6f",
         "__expectedType__": "cc.Prefab"
       }
     ],
     "poolSize": 10,
-    "spawnInterval": 0.5,
-    "spawnPos": {
-      "__id__": 52
-    },
     "_id": "b0Rt+06gpEgJcz5dSjzkTX"
-  },
-  {
-    "__type__": "cc.Node",
-    "_name": "SpawnerPos",
-    "_objFlags": 0,
-    "__editorExtras__": {},
-    "_parent": {
-      "__id__": 53
-    },
-    "_children": [],
-    "_active": true,
-    "_components": [
-      {
-        "__id__": 55
-      }
-    ],
-    "_prefab": null,
-    "_lpos": {
-      "__type__": "cc.Vec3",
-      "x": -224.714,
-      "y": 489.398,
-      "z": 0
-    },
-    "_lrot": {
-      "__type__": "cc.Quat",
-      "x": 0,
-      "y": 0,
-      "z": 0,
-      "w": 1
-    },
-    "_lscale": {
-      "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
-      "z": 1
-    },
-    "_mobility": 0,
-    "_layer": 1073741824,
-    "_euler": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_id": "a5WKaCM6dOoq1Xaq8i1yY+"
-  },
-  {
-    "__type__": "cc.Node",
-    "_name": "EnemySpawner",
-    "_objFlags": 0,
-    "__editorExtras__": {},
-    "_parent": {
-      "__id__": 2
-    },
-    "_children": [
-      {
-        "__id__": 52
-      }
-    ],
-    "_active": true,
-    "_components": [
-      {
-        "__id__": 54
-      }
-    ],
-    "_prefab": null,
-    "_lpos": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_lrot": {
-      "__type__": "cc.Quat",
-      "x": 0,
-      "y": 0,
-      "z": 0,
-      "w": 1
-    },
-    "_lscale": {
-      "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
-      "z": 1
-    },
-    "_mobility": 0,
-    "_layer": 33554432,
-    "_euler": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_id": "1eAqnkAvRKMrMBEfwo6sHh"
-  },
-  {
-    "__type__": "cc.UITransform",
-    "_name": "",
-    "_objFlags": 0,
-    "__editorExtras__": {},
-    "node": {
-      "__id__": 53
-    },
-    "_enabled": true,
-    "__prefab": null,
-    "_contentSize": {
-      "__type__": "cc.Size",
-      "width": 100,
-      "height": 100
-    },
-    "_anchorPoint": {
-      "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
-    },
-    "_id": "55PQYqyrBBuKMupORP0+o6"
-  },
-  {
-    "__type__": "cc.UITransform",
-    "_name": "",
-    "_objFlags": 0,
-    "__editorExtras__": {},
-    "node": {
-      "__id__": 52
-    },
-    "_enabled": true,
-    "__prefab": null,
-    "_contentSize": {
-      "__type__": "cc.Size",
-      "width": 100,
-      "height": 100
-    },
-    "_anchorPoint": {
-      "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
-    },
-    "_id": "39xljuTFhHabfBuLKdQn65"
   },
   {
     "__type__": "cc.Node",
@@ -2086,16 +1944,16 @@
     },
     "_children": [
       {
-        "__id__": 57
+        "__id__": 53
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 59
+        "__id__": 55
       },
       {
-        "__id__": 60
+        "__id__": 56
       }
     ],
     "_prefab": null,
@@ -2134,13 +1992,13 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 56
+      "__id__": 52
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 58
+        "__id__": 54
       }
     ],
     "_prefab": null,
@@ -2179,7 +2037,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 57
+      "__id__": 53
     },
     "_enabled": true,
     "__prefab": null,
@@ -2201,7 +2059,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 56
+      "__id__": 52
     },
     "_enabled": true,
     "__prefab": null,
@@ -2223,7 +2081,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 56
+      "__id__": 52
     },
     "_enabled": true,
     "__prefab": null,
@@ -2232,16 +2090,102 @@
       "__expectedType__": "cc.Prefab"
     },
     "bulletParent": {
-      "__id__": 57
+      "__id__": 53
     },
     "muzzle": {
       "__id__": 42
     },
-    "player": {
-      "__id__": 41
-    },
     "fireInterval": 0.2,
     "_id": "39GbdzMxFHUKss0yDUkWvU"
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "EnemySpawner",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "_parent": {
+      "__id__": 2
+    },
+    "_children": [],
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 58
+      },
+      {
+        "__id__": 59
+      }
+    ],
+    "_prefab": null,
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_lrot": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_lscale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_mobility": 0,
+    "_layer": 33554432,
+    "_euler": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_id": "1eAqnkAvRKMrMBEfwo6sHh"
+  },
+  {
+    "__type__": "cc.UITransform",
+    "_name": "",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "node": {
+      "__id__": 57
+    },
+    "_enabled": true,
+    "__prefab": null,
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 100,
+      "height": 100
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_id": "55PQYqyrBBuKMupORP0+o6"
+  },
+  {
+    "__type__": "f2033Ko+VdPxI+Y4cso3tkT",
+    "_name": "",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "node": {
+      "__id__": 57
+    },
+    "_enabled": true,
+    "__prefab": null,
+    "baseInterval": 0.5,
+    "minInterval": 0.2,
+    "intervalDecay": 0.01,
+    "enemyTypes": [
+      "enemy_01",
+      "enemy_02"
+    ],
+    "_id": "1bVj6yBQJPurpL92IH6GvG"
   },
   {
     "__type__": "cc.Node",
@@ -2255,10 +2199,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 62
+        "__id__": 61
       },
       {
-        "__id__": 63
+        "__id__": 62
       }
     ],
     "_prefab": null,
@@ -2297,7 +2241,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 61
+      "__id__": 60
     },
     "_enabled": true,
     "__prefab": null,
@@ -2319,7 +2263,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 61
+      "__id__": 60
     },
     "_enabled": true,
     "__prefab": null,
@@ -2407,28 +2351,28 @@
   {
     "__type__": "cc.SceneGlobals",
     "ambient": {
-      "__id__": 69
+      "__id__": 68
     },
     "shadows": {
-      "__id__": 70
+      "__id__": 69
     },
     "_skybox": {
-      "__id__": 71
+      "__id__": 70
     },
     "fog": {
-      "__id__": 72
+      "__id__": 71
     },
     "octree": {
-      "__id__": 73
+      "__id__": 72
     },
     "skin": {
-      "__id__": 74
+      "__id__": 73
     },
     "lightProbeInfo": {
-      "__id__": 75
+      "__id__": 74
     },
     "postSettings": {
-      "__id__": 76
+      "__id__": 75
     },
     "bakedWithStationaryMainLight": false,
     "bakedWithHighpLightmap": false
