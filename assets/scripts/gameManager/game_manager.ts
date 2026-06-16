@@ -14,6 +14,10 @@ export class GameManager extends Component {
     protected onLoad(): void {
         GameManager._inst = this;
     }
+
+    public onPlayerDead() {
+        this.player.active = false;
+    }
 }
 
 

@@ -103,7 +103,7 @@ export class EnemyManager extends Component {
         enemyNode.active = false;
         enemyNode.removeFromParent(); //必须要从父节点上移除，如果只是put放回对象池里。实际上节点还是存在在父节点下，只是没渲染
 
-        this._poolMap.get(type).put(enemyNode);
+        this._poolMap.get(type)?.put(enemyNode);
     }
 
     public getActiveEnemies(): Node[] {

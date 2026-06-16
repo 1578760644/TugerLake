@@ -1,12 +1,10 @@
 import { _decorator, clamp, Component, EventKeyboard, EventTouch, Input, input, KeyCode, Node, Vec2, Vec3 } from 'cc';
+import { PLAYER_CONFIG } from '../../config/player_config';
+import { GameManager } from './game_manager';
 const { ccclass, property } = _decorator;
 
 @ccclass('PlayerManager')
 export class PlayerManager extends Component {
-    @property(Node)
-    public player: Node | null = null;
-    @property
-    public moveSpeed: number = 600; // 像素/秒
 
     private _moveDirection: Vec2 = new Vec2();
     //用于复用计算，避免每次实例化生成
@@ -69,13 +67,15 @@ export class PlayerManager extends Component {
 
 
         //统一移动
-        const playerPos = this.player.getPosition();
-        const offsetX = this._moveDirection.x * this.moveSpeed * deltaTime;
-        const offsetY = this._moveDirection.y * this.moveSpeed * deltaTime;
+        const speed = PLAYER_CONFIG.speed;
+        const player = GameManager.inst.player;
+        const playerPos = player.getPosition();
+        const offsetX = this._moveDirection.x * speed * deltaTime;
+        const offsetY = this._moveDirection.y * speed * deltaTime;
         const playerX = clamp((playerPos.x + offsetX), minX, maxX);
         const playerY = clamp((playerPos.y + offsetY), minY, maxY);
-        this.player.setPosition(playerX, playerY);
-        
+        player.setPosition(playerX, playerY);
+
         //重置移动标记，让下一帧重新检测
         this._hasMovedThisFrame = false;
     }
