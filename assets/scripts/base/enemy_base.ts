@@ -2,6 +2,7 @@ import { _decorator, Component, Node, UITransform, Vec3 } from 'cc';
 import { GameManager } from '../gameManager/game_manager';
 import { EnemyManager } from '../gameManager/enemy_manager';
 import { Player } from '../prefabs/player';
+import { ExperienceManager } from '../gameManager/experience_manager';
 const { ccclass, property } = _decorator;
 
 @ccclass('EnemyBase')
@@ -34,7 +35,7 @@ export class EnemyBase extends Component {
             .subtract(this.node.getWorldPosition())
             .normalize();
         const offset = this._tempVec3.set(direction).multiplyScalar(dt * this._speed);
-        this.node.setPosition(this.node.position.add(offset));
+        this.node.setPosition(this.node.position.add(offset)); //当前位置+偏移量才是最终移动到的位置
 
         this.checkCollision();
     }
@@ -55,11 +56,13 @@ export class EnemyBase extends Component {
         this._hp -= damage;
         if (this._hp <= 0) {
             this._isDead = true;
+            ExperienceManager.inst.dropAt(this.node.getWorldPosition())
             EnemyManager.inst.recycleEnemy(this.node, this._enemyType);
+            return;
         }
     }
 
-    getEnemyType(){
+    getEnemyType() {
         return this._enemyType;
     }
 

@@ -123,8 +123,8 @@ export class EnemyManager extends Component {
         const angle = Math.random() * Math.PI * 2
 
         //2.随机距离，740 ~ 800（确保在屏幕外）
-        const minDist = 740;
-        const maxDist = 800;
+        const minDist = 540;
+        const maxDist = 600;
         const distance = minDist + Math.random() * (maxDist - minDist);
 
         // 3. 计算出生偏移
