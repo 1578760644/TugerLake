@@ -25,6 +25,7 @@ export class PlayerManager extends Component {
     }
 
     update(deltaTime: number) {
+        if (GameManager.inst.isGameActive) return;
         this.applyMovement(deltaTime);
     }
 

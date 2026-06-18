@@ -28,7 +28,7 @@ export class EnemyBase extends Component {
 
     updateMovement(dt: number) {
         const player = GameManager.inst.player;
-        if (!player) return;
+        if (!player.active) return;
         const playerPos = player.getWorldPosition();
         const direction = this._tempVec3.set(playerPos)
             .subtract(this.node.getWorldPosition())

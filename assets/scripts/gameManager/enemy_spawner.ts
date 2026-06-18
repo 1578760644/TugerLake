@@ -1,6 +1,7 @@
 import { _decorator, CCString, Component, Node } from 'cc';
 import { EnemyManager } from './enemy_manager';
 import { SPAWN_CONFIG } from '../../config/spawn_config';
+import { GameManager } from './game_manager';
 const { ccclass, property } = _decorator;
 
 @ccclass('EnemySpawner')
@@ -18,6 +19,7 @@ export class EnemySpawner extends Component {
     }
 
     protected update(dt: number): void {
+        if (GameManager.inst.isGameActive) return;
         //累计游戏总时间
         this._gameTime += dt;
 

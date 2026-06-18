@@ -6,6 +6,10 @@ export class GameManager extends Component {
     @property(Node)
     public player: Node = null;
 
+    private _isGameOver: boolean = false;
+    private _isPause: boolean = false;
+
+
     private static _inst: GameManager;
     public static get inst(): GameManager {
         return this._inst;
@@ -17,6 +21,11 @@ export class GameManager extends Component {
 
     public onPlayerDead() {
         this.player.active = false;
+        this._isGameOver = true;
+    }
+
+    public get isGameActive(): boolean {
+        return this._isGameOver;
     }
 }
 
