@@ -5,6 +5,10 @@ const { ccclass, property } = _decorator;
 
 @ccclass('Player')
 export class Player extends Component {
+    @property([Node])
+    public hpNodes: Node[] = [];
+
+
     private _hp: number;
     private _maxHp: number;
 
@@ -16,7 +20,7 @@ export class Player extends Component {
     public takeDamage(damage: number) {
         if (this._hp <= 0) return;
         this._hp -= damage;
-        console.log(`玩家当前血量${this._hp}`);
+        this.onShowHP(this._hp);
         if (this._hp <= 0) {
             console.log(`dead`);
             this._hp = 0;
@@ -28,6 +32,12 @@ export class Player extends Component {
         const ui = this.getComponent(UITransform);
         const radius = Math.min(ui.width, ui.height) * 0.5;
         return radius;
+    }
+
+    public onShowHP(hp: number) {
+        for (let i = 0; i < this.hpNodes.length; i++) {
+            this.hpNodes[i].active = i < hp;
+        }
     }
 }
 
