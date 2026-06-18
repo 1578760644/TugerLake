@@ -59,6 +59,10 @@ export class EnemyBase extends Component {
         }
     }
 
+    getEnemyType(){
+        return this._enemyType;
+    }
+
     private checkCollision() {
         if (this._attackCooldown > 0) return;
         const player = GameManager.inst.player;

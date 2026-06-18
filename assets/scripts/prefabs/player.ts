@@ -39,6 +39,13 @@ export class Player extends Component {
             this.hpNodes[i].active = i < hp;
         }
     }
+
+    public resetHp() {
+        this._hp = this._maxHp;
+        for (let i = 0; i < this.hpNodes.length; i++) {
+            this.hpNodes[i].active = true;
+        }
+    }
 }
 
 

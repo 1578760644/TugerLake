@@ -134,6 +134,17 @@ export class EnemyManager extends Component {
         // 4. 写入复用向量，返回玩家位置 + 偏移
         return this._tempVec3.set(playerPos.x + offsetX, playerPos.y + offsetY, 0)
     }
+
+    public recycleAllEnemies() {
+        //倒叙遍历
+        for (let i = this._activeEnemies.length - 1; i >= 0; i--) {
+            const node = this._activeEnemies[i];
+            const enemyComp = node.getComponent(EnemyBase);
+            const type = enemyComp ? enemyComp.getEnemyType() : '';
+            this.recycleEnemy(node, type);
+        }
+        this._activeEnemies = [];
+    }
 }
 
 

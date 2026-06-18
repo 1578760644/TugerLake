@@ -11,6 +11,15 @@ export class EnemySpawner extends Component {
 
     private _timers: Map<string, number> = new Map();
 
+    private static _inst: EnemySpawner;
+    public static get inst(): EnemySpawner {
+        return this._inst;
+    }
+
+
+    protected onLoad(): void {
+        EnemySpawner._inst = this;
+    }
 
     protected start(): void {
         for (const type of Object.keys(SPAWN_CONFIG)) {
@@ -54,6 +63,13 @@ export class EnemySpawner extends Component {
 
             //存回计时器
             this._timers.set(type, timer);
+        }
+    }
+
+    resetSpawner() {
+        this._gameTime = 0;
+        for (const type of Object.keys(SPAWN_CONFIG)) {
+            this._timers.set(type, 0)
         }
     }
 }
