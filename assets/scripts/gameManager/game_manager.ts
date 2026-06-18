@@ -3,6 +3,7 @@ import { Player } from '../prefabs/player';
 import { EnemySpawner } from './enemy_spawner';
 import { EnemyManager } from './enemy_manager';
 import { BulletManager } from './bullet_manager';
+import { ExperienceManager } from './experience_manager';
 const { ccclass, property } = _decorator;
 
 @ccclass('GameManager')
@@ -40,12 +41,16 @@ export class GameManager extends Component {
             playerComp.resetHp();  //重置血量
         }
 
-        
         EnemyManager.inst.recycleAllEnemies();  //回收所有敌人
         EnemySpawner.inst.resetSpawner();       //重置计时器
-        BulletManager.inst.clearAllBullet();    //清理全部子弹    
-        
+        BulletManager.inst.clearAllBullet();    //清理全部子弹
+        ExperienceManager.inst.recycleAll();    //回收所有经验
+
         this._isGameOver = false; //恢复游戏
+    }
+
+    addExperience(exp: number) {
+        console.log(exp);
     }
 }
 
