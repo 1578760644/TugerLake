@@ -2,6 +2,7 @@ import { _decorator, Component, Node, UITransform, Vec2, Vec3 } from 'cc';
 import { BulletManager } from '../gameManager/bullet_manager';
 import { EnemyManager } from '../gameManager/enemy_manager';
 import { EnemyBase } from '../base/enemy_base';
+import { GameManager } from '../gameManager/game_manager';
 const { ccclass, property } = _decorator;
 
 @ccclass('Bullet_01 ')
@@ -12,6 +13,7 @@ export class Bullet_01 extends Component {
     private _direction: Vec3 = new Vec3(1, 0, 0);
 
     protected update(dt: number): void {
+        if (GameManager.inst.isPause) return;
         //直接用成员变量 _direction 计算，避免重复取位置
         const offset = this._direction.clone().multiplyScalar(this._speed * dt);
         this.node.setPosition(this.node.position.add(offset));

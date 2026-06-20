@@ -28,7 +28,7 @@ export class EnemySpawner extends Component {
     }
 
     protected update(dt: number): void {
-        if (GameManager.inst.isGameActive) return;
+        if (GameManager.inst.isPause) return;
         //累计游戏总时间
         this._gameTime += dt;
 

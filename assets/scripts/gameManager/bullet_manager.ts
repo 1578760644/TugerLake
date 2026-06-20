@@ -31,7 +31,7 @@ export class BulletManager extends Component {
     }
 
     update(dt: number): void {
-        if (GameManager.inst.isGameActive) return;  //暂时这么写，后续要改写成对象池。感觉会存在问题导致整个update不调用
+        if (GameManager.inst.isPause) return;  //暂时这么写，后续要改写成对象池。感觉会存在问题导致整个update不调用
         this._fireTimer += dt;
 
         if (this._fireTimer < this.fireInterval) return;

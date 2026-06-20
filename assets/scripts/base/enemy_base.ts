@@ -23,6 +23,7 @@ export class EnemyBase extends Component {
 
     protected update(dt: number): void {
         if (this._isDead) return;
+        if (GameManager.inst.isPause) return;
         if (this._attackCooldown > 0) this._attackCooldown -= dt;
         this.updateMovement(dt);
     }

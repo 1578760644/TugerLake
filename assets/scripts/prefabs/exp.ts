@@ -22,6 +22,7 @@ export class Exp extends Component {
 
 
     update(deltaTime: number) {
+        if (GameManager.inst.isPause) return;
         const player = GameManager.inst.player;
         if (!player || !player.active) return;
         const playerPos = player.getWorldPosition();
