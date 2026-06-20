@@ -59,6 +59,8 @@ export class GameManager extends Component {
         ExperienceManager.inst.recycleAll();    //回收所有经验
 
         this._isGameOver = false; //恢复游戏
+        this._currentExp = 1;
+        this._playerLevel = 1;
     }
 
     addExperience(exp: number) {
@@ -91,6 +93,18 @@ export class GameManager extends Component {
 
         this._isLevelUp = false;
         this._isPause = false;
+    }
+
+    public get currentExp(): number {
+        return this._currentExp;
+    }
+
+    public get needExp(): number {
+        return this._needExp;
+    }
+
+    public get playerLevel(): number {
+        return this._playerLevel;
     }
 }
 
