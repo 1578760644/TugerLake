@@ -1858,7 +1858,7 @@
         "__id__": 49
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 51
@@ -2009,10 +2009,7 @@
       "b": 255,
       "a": 255
     },
-    "_spriteFrame": {
-      "__uuid__": "6f1880de-954d-4fb9-8bf1-59a052081534@b80c3",
-      "__expectedType__": "cc.SpriteFrame"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_fillType": 0,
     "_sizeMode": 1,
@@ -2059,7 +2056,7 @@
         "__id__": 55
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 57
@@ -2210,10 +2207,7 @@
       "b": 255,
       "a": 255
     },
-    "_spriteFrame": {
-      "__uuid__": "6f1880de-954d-4fb9-8bf1-59a052081534@48956",
-      "__expectedType__": "cc.SpriteFrame"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_fillType": 0,
     "_sizeMode": 1,
@@ -2260,7 +2254,7 @@
         "__id__": 61
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 63
@@ -2411,10 +2405,7 @@
       "b": 255,
       "a": 255
     },
-    "_spriteFrame": {
-      "__uuid__": "6f1880de-954d-4fb9-8bf1-59a052081534@8fcfe",
-      "__expectedType__": "cc.SpriteFrame"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_fillType": 0,
     "_sizeMode": 1,
@@ -2538,7 +2529,7 @@
   {
     "__type__": "cc.Node",
     "_name": "tile_0139",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 70
@@ -2586,7 +2577,7 @@
   {
     "__type__": "cc.Node",
     "_name": "tile_0121",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 71
@@ -2638,7 +2629,7 @@
   {
     "__type__": "cc.Node",
     "_name": "Health",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 72
@@ -2692,7 +2683,7 @@
   {
     "__type__": "cc.Node",
     "_name": "UI",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 2
@@ -2750,7 +2741,7 @@
   {
     "__type__": "cc.Node",
     "_name": "SwitchUI",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 72
@@ -2798,7 +2789,7 @@
   {
     "__type__": "cc.Node",
     "_name": "Bg",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 73
@@ -2843,7 +2834,7 @@
   {
     "__type__": "cc.Node",
     "_name": "bg",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 74
@@ -2952,7 +2943,7 @@
   {
     "__type__": "cc.Node",
     "_name": "SwitchPanel",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 73
@@ -3009,8 +3000,8 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "weapon_01",
-    "_objFlags": 512,
+    "_name": "panel_01",
+    "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 78
@@ -3067,8 +3058,8 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "tile_0002",
-    "_objFlags": 512,
+    "_name": "weapon_sprite",
+    "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 79
@@ -3177,7 +3168,7 @@
   {
     "__type__": "cc.Node",
     "_name": "introduction_01",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 79
@@ -3431,12 +3422,12 @@
     "component": "",
     "_componentId": "40446VGM/NAWZr/M39ED91H",
     "handler": "onWeaponClicked",
-    "customEventData": ""
+    "customEventData": "0"
   },
   {
     "__type__": "cc.Node",
-    "_name": "weapon_02",
-    "_objFlags": 512,
+    "_name": "panel_02",
+    "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 78
@@ -3493,8 +3484,8 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "tile_0003",
-    "_objFlags": 512,
+    "_name": "weapon_sprite",
+    "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 90
@@ -3603,7 +3594,7 @@
   {
     "__type__": "cc.Node",
     "_name": "introduction_02",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 90
@@ -3844,7 +3835,9 @@
     "_disabledSprite": null,
     "_duration": 0.1,
     "_zoomScale": 1.2,
-    "_target": null,
+    "_target": {
+      "__id__": 90
+    },
     "_id": "a0AgrWj59Lm7fCCKTuRqQv"
   },
   {
@@ -3855,12 +3848,12 @@
     "component": "",
     "_componentId": "40446VGM/NAWZr/M39ED91H",
     "handler": "onWeaponClicked",
-    "customEventData": ""
+    "customEventData": "1"
   },
   {
     "__type__": "cc.Node",
-    "_name": "weapon_03",
-    "_objFlags": 512,
+    "_name": "panel_03",
+    "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 78
@@ -3917,8 +3910,8 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "tile_0004",
-    "_objFlags": 512,
+    "_name": "weapon_sprite",
+    "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 101
@@ -4027,7 +4020,7 @@
   {
     "__type__": "cc.Node",
     "_name": "introduction_03",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 101
@@ -4279,7 +4272,7 @@
     "component": "",
     "_componentId": "40446VGM/NAWZr/M39ED91H",
     "handler": "onWeaponClicked",
-    "customEventData": ""
+    "customEventData": "2"
   },
   {
     "__type__": "cc.UITransform",
@@ -4327,12 +4320,21 @@
     "switchUI": {
       "__id__": 73
     },
+    "weaponSlot2": {
+      "__id__": 48
+    },
+    "weaponSlot3": {
+      "__id__": 54
+    },
+    "weaponSlot4": {
+      "__id__": 60
+    },
     "_id": "bcWR05xRBLabqETX0RMU5J"
   },
   {
     "__type__": "cc.Node",
     "_name": "R_Button",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 72
@@ -4381,7 +4383,7 @@
   {
     "__type__": "cc.Node",
     "_name": "r_button",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 114
@@ -4594,7 +4596,7 @@
   {
     "__type__": "cc.Node",
     "_name": "ExpBar",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 72
@@ -4652,7 +4654,7 @@
   {
     "__type__": "cc.Node",
     "_name": "bar_bg",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 122
@@ -4761,7 +4763,7 @@
   {
     "__type__": "cc.Node",
     "_name": "bar_fill",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 122
@@ -4870,7 +4872,7 @@
   {
     "__type__": "cc.Node",
     "_name": "level",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 122
@@ -5068,7 +5070,7 @@
   {
     "__type__": "cc.Node",
     "_name": "tile_0122",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 71
@@ -5120,7 +5122,7 @@
   {
     "__type__": "cc.Node",
     "_name": "tile_0140",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 135
@@ -5290,7 +5292,7 @@
   {
     "__type__": "cc.Node",
     "_name": "tile_0123",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 71
@@ -5342,7 +5344,7 @@
   {
     "__type__": "cc.Node",
     "_name": "tile_0141",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 141
@@ -5512,7 +5514,7 @@
   {
     "__type__": "cc.Node",
     "_name": "tile_0124",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 71
@@ -5564,7 +5566,7 @@
   {
     "__type__": "cc.Node",
     "_name": "tile_0142",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 147
