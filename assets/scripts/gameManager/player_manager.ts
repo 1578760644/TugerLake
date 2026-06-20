@@ -1,10 +1,13 @@
 import { _decorator, clamp, Component, EventKeyboard, EventTouch, Input, input, KeyCode, Node, Vec2, Vec3 } from 'cc';
 import { PLAYER_CONFIG } from '../../config/player_config';
 import { GameManager } from './game_manager';
+import { WeaponBase } from '../base/weapon_base';
 const { ccclass, property } = _decorator;
 
 @ccclass('PlayerManager')
 export class PlayerManager extends Component {
+    @property([Node])
+    public weaponNodes: Node[] = [];
 
     private _moveDirection: Vec2 = new Vec2();
     //用于复用计算，避免每次实例化生成
@@ -22,6 +25,20 @@ export class PlayerManager extends Component {
         input.on(Input.EventType.TOUCH_CANCEL, this.onTouchEnd, this);
         input.on(Input.EventType.KEY_DOWN, this.onKeyDown, this);
         input.on(Input.EventType.KEY_UP, this.onKeyUp, this);
+    }
+
+    protected start(): void {
+        const player = GameManager.inst.player;
+
+        for (let i = 0; i < this.weaponNodes.length; i++) {
+            const weaponNode = this.weaponNodes[i];
+            const weapon = weaponNode.getComponent(WeaponBase);
+            if (weapon) {
+                // i===0 是初始武器，active 设为 true，其余 false
+                weapon.initPositionAndRotation(player, i === 0, i);
+                weaponNode.active = (i === 0);
+            }
+        }
     }
 
     update(deltaTime: number) {
