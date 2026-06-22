@@ -69,6 +69,12 @@ export class GameManager extends Component {
             this._isLevelUp = true;
             this._isPause = true;
 
+            // 如果武器槽已满，直接完成升级，不弹出面板
+            if (WeaponManager.inst.isSlotsFull()) {
+                this.applyUpgrade();   // 仍然增加等级、重置经验
+                return;
+            }
+
             // 随机抽取 3 个不重复的武器类型（从 WeaponManager 获取池子）
             const pool = WeaponManager.inst.getUpgradeableWeaponTypes();
             const shuffled = pool.sort(() => Math.random() - 0.5);

@@ -120,6 +120,11 @@ export class WeaponManager extends Component {
         return this._iconMap[type] ?? null;
     }
 
+    /** 检查是否所有武器槽都已装备 */
+    public isSlotsFull(): boolean {
+        return this._nextSlotIndex >= 4;
+    }
+
 
     /** 获取可升级武器类型列表（排除初始武器） */
     public getUpgradeableWeaponTypes(): string[] {
