@@ -3630,15 +3630,9 @@
     "switchUI": {
       "__id__": 57
     },
-    "weaponSlot2": {
-      "__id__": 42
-    },
-    "weaponSlot3": {
-      "__id__": 42
-    },
-    "weaponSlot4": {
-      "__id__": 42
-    },
+    "weaponSlot2": null,
+    "weaponSlot3": null,
+    "weaponSlot4": null,
     "_id": "bcWR05xRBLabqETX0RMU5J"
   },
   {
