@@ -1667,7 +1667,7 @@
   },
   {
     "__type__": "cc.PrefabInstance",
-    "fileId": "43SeRfSIVJZ4C050PCLpSQ",
+    "fileId": "e8etCWewJHHqhs7z2DLPSF",
     "prefabRootNode": null,
     "mountedChildren": [],
     "mountedComponents": [],
@@ -1713,8 +1713,8 @@
     ],
     "value": {
       "__type__": "cc.Vec3",
-      "x": 85.926,
-      "y": -1.33,
+      "x": 2.88,
+      "y": -4.874,
       "z": 0
     }
   },
@@ -3630,9 +3630,15 @@
     "switchUI": {
       "__id__": 57
     },
-    "weaponSlot2": null,
-    "weaponSlot3": null,
-    "weaponSlot4": null,
+    "weaponSlot2": {
+      "__id__": 42
+    },
+    "weaponSlot3": {
+      "__id__": 42
+    },
+    "weaponSlot4": {
+      "__id__": 42
+    },
     "_id": "bcWR05xRBLabqETX0RMU5J"
   },
   {
@@ -5983,6 +5989,9 @@
     },
     "_enabled": true,
     "__prefab": null,
+    "defaultWeapon": {
+      "__id__": 42
+    },
     "_id": "1bp5GdGVxBp7lxuZLs4jQx"
   },
   {

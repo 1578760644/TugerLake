@@ -1,4 +1,4 @@
-import { WeaponBase } from "../base/weapon_base";
+import { WeaponBase } from "db://assets/scripts/base/weapon_base";
 import { _decorator } from 'cc';
 const { ccclass } = _decorator;
 

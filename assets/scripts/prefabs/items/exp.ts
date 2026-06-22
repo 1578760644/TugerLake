@@ -1,6 +1,6 @@
 import { _decorator, Component, Node, Vec3 } from 'cc';
-import { GameManager } from '../gameManager/game_manager';
-import { ExperienceManager } from '../gameManager/experience_manager';
+import { GameManager } from 'db://assets/scripts/gameManager/game_manager';
+import { ExperienceManager } from 'db://assets/scripts/gameManager/experience_manager';
 const { ccclass, property } = _decorator;
 
 @ccclass('Exp')

@@ -5,18 +5,19 @@ const { ccclass, property } = _decorator;
 
 @ccclass('WeaponManager')
 export class WeaponManager extends Component {
-
+    @property(Node)
+    public defaultWeapon: Node = null;
 
     onLoad() {
         const playerNode = GameManager.inst.player;
 
-        const pistolNode = playerNode.getChildByName('pistol'); // 例如 'pistol' 或 'pistolPrefab'
+        const pistolNode = this.defaultWeapon;
         if (pistolNode) {
             const weapon = pistolNode.getComponent(WeaponBase);
             if (weapon) {
                 weapon.initPositionAndRotation(playerNode, true, 0); // 初始武器，右边
                 weapon.loadConfig();  // 读取配置属性
-                console.log('手枪初始化完成');
+                console.log('默认武器初始化完成');
             }
         }
     }

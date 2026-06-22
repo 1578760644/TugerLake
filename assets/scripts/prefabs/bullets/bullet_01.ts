@@ -1,8 +1,8 @@
 import { _decorator, Component, Node, UITransform, Vec2, Vec3 } from 'cc';
-import { BulletManager } from '../gameManager/bullet_manager';
-import { EnemyManager } from '../gameManager/enemy_manager';
-import { EnemyBase } from '../base/enemy_base';
-import { GameManager } from '../gameManager/game_manager';
+import { BulletManager } from 'db://assets/scripts/gameManager/bullet_manager';
+import { EnemyManager } from 'db://assets/scripts/gameManager/enemy_manager';
+import { EnemyBase } from 'db://assets/scripts/base/enemy_base';
+import { GameManager } from 'db://assets/scripts/gameManager/game_manager';
 const { ccclass, property } = _decorator;
 
 @ccclass('Bullet_01 ')

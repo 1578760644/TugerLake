@@ -1,5 +1,5 @@
 import { _decorator, Component, instantiate, Node, Prefab, Vec3 } from 'cc';
-import { Bullet_01 } from '../prefabs/bullet_01';
+import { Bullet_01 } from '../prefabs/bullets/bullet_01';
 import { EnemyManager } from './enemy_manager';
 import { GameManager } from './game_manager';
 const { ccclass, property } = _decorator;

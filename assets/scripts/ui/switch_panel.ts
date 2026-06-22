@@ -27,12 +27,12 @@ export class SwitchPanel extends Component {
         if (isNaN(index) || index < 0 || index > 2) return;
 
         // 如果所有槽都已激活，不再处理
-        // if (this._nextSlotIndex >= 3) {
-        //     console.warn('所有武器槽已满');
-        //     this.switchUI.active = false;
-        //     GameManager.inst.applyUpgrade();
-        //     return;
-        // }
+        if (this._nextSlotIndex >= 3) {
+            console.warn('所有武器槽已满');
+            this.switchUI.active = false;
+            GameManager.inst.applyUpgrade();
+            return;
+        }
 
         //点击获取面板下的武器图标
         const selectedPanel = this.weaponPanels[index];
