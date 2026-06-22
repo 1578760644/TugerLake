@@ -33,10 +33,10 @@ export const WEAPON_CONFIG: Record<string, WeaponConfig> = {
         damage: 2,
         attackRange: 800,
     },
-    refle: {
+    rifle: {
         name: '步枪',
         prefabIndex: 3,
-        category: 'refle',
+        category: 'rifle',
         fireInterval: 0.4,
         damage: 1,
         attackRange: 600,
