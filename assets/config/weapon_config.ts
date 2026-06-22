@@ -12,7 +12,7 @@ export const WEAPON_CONFIG: Record<string, WeaponConfig> = {
     pistol: {
         name: '手枪',
         prefabIndex: 0,
-        category: 'pistoal',
+        category: 'pistol',
         fireInterval: 0.6,
         damage: 1,
         attackRange: 300,

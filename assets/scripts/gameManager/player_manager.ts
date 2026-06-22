@@ -27,20 +27,6 @@ export class PlayerManager extends Component {
         input.on(Input.EventType.KEY_UP, this.onKeyUp, this);
     }
 
-    protected start(): void {
-        const player = GameManager.inst.player;
-
-        for (let i = 0; i < this.weaponNodes.length; i++) {
-            const weaponNode = this.weaponNodes[i];
-            const weapon = weaponNode.getComponent(WeaponBase);
-            if (weapon) {
-                // i===0 是初始武器，active 设为 true，其余 false
-                weapon.initPositionAndRotation(player, i === 0, i);
-                weaponNode.active = (i === 0);
-            }
-        }
-    }
-
     update(deltaTime: number) {
         if (GameManager.inst.isPause) return;
         this.applyMovement(deltaTime);
