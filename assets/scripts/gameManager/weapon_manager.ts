@@ -59,7 +59,7 @@ export class WeaponManager extends Component {
             console.warn('[WeaponManager] 未找到初始武器 pistol 的预制体');
             return;
         }
-        this.equipToSlot(prefab, true, 0); // 主武器，右边
+        this.equipToSlot(prefab, true, 0, 'pistol'); // 主武器，右边
     }
 
     /** 根据武器类型 key 装备新武器（供 SwitchPanel 调用） */
@@ -79,7 +79,7 @@ export class WeaponManager extends Component {
         const slotIndex = this._nextSlotIndex;
         this._nextSlotIndex++;
 
-        this.equipToSlot(prefab, false, slotIndex);
+        this.equipToSlot(prefab, false, slotIndex, type);
     }
 
 
@@ -88,14 +88,19 @@ export class WeaponManager extends Component {
      * @param prefab 预制体
      * @param isPrimary 是否为默认武器
      * @param slotIndex 插槽位置
+     * @param weaponType 武器类型（可选，若不传则使用预制体上已有的 weaponType）
      */
-    private equipToSlot(prefab: Prefab, isPrimary: boolean, slotIndex: number) {
+    private equipToSlot(prefab: Prefab, isPrimary: boolean, slotIndex: number, weaponType?: string) {
         const player = GameManager.inst.player;
         const weaponNode = instantiate(prefab);
         weaponNode.setParent(player);
 
         const weapon = weaponNode.getComponent(WeaponBase);
         if (weapon) {
+            // 如果提供了武器类型，则注入；否则保持预制体原有值（向后兼容）
+            if (weaponType) {
+                weapon.weaponType = weaponType;
+            }
             weapon.initPositionAndRotation(player, isPrimary, slotIndex);   //绑定位置
             weapon.loadConfig();    //初始化武器
         }

@@ -5606,13 +5606,24 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "bulletPrefab": {
-      "__uuid__": "2dadecc3-f8d2-48de-a0cf-178371fab2df",
-      "__expectedType__": "cc.Prefab"
-    },
+    "bulletPrefabs": [
+      {
+        "__uuid__": "2dadecc3-f8d2-48de-a0cf-178371fab2df",
+        "__expectedType__": "cc.Prefab"
+      },
+      {
+        "__uuid__": "cd311e85-88bc-4ca5-97b3-0070f491eb98",
+        "__expectedType__": "cc.Prefab"
+      },
+      {
+        "__uuid__": "cc5b3055-70a2-49ba-92f2-23363527070b",
+        "__expectedType__": "cc.Prefab"
+      }
+    ],
     "bulletParent": {
       "__id__": 147
     },
+    "poolSize": 50,
     "_id": "39GbdzMxFHUKss0yDUkWvU"
   },
   {

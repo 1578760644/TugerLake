@@ -7,13 +7,13 @@ const { ccclass, property } = _decorator;
 
 @ccclass('WeaponBase')
 export class WeaponBase extends Component {
-    private _muzzle: Node = null;
+    protected _muzzle: Node = null;
 
-    public weaponType: string;
+    public weaponType: string = ''; //由 WeaponManager 自动注入
 
     //从配置表加载的属性
     private _category: string;
-    private _damage: number;
+    protected _bulletType: string;
     private _attackRange: number;
     private _fireInterval: number;
 
@@ -27,13 +27,12 @@ export class WeaponBase extends Component {
         const config = WEAPON_CONFIG[this.weaponType];
         if (!config) {
             console.warn(`[WeaponBase] 未找到武器配置: ${this.weaponType}`);
-            this._damage = 1;
             this._attackRange = 300;
             this._fireInterval = 1;
             return;
         }
-        this._category = config.category
-        this._damage = config.damage;
+        this._category = config.category;
+        this._bulletType = config.bulletType;
         this._attackRange = config.attackRange;
         this._fireInterval = config.fireInterval;
     }
@@ -60,29 +59,14 @@ export class WeaponBase extends Component {
         if (!target || !target.isValid) return;
 
         const direction = this.getDirectionToTarget(target);
-        BulletManager.inst.spawnBullet(this._muzzle, direction, this._damage);
+        BulletManager.inst.spawnBullet(this._bulletType, this._muzzle, direction);
     }
-
-    // /**
-    //  * 初始化武器属性
-    //  * @param category 武器类型
-    //  * @param damage 伤害
-    //  * @param attackRange 攻击范围 
-    //  * @param fireInterval 攻击间隔
-    //  */
-    // init(category: string = 'none', damage: number = 1, attackRange: number = 300, fireInterval: number = 1) {
-    //     this._category = category;
-    //     this._damage = damage;
-    //     this._attackRange = attackRange;
-    //     this._fireInterval = fireInterval;
-    // }
-
 
     /**
      * 在武器攻击范围内寻找最近的敌人
      * @returns 最近的敌人
      */
-    private findNearestEnemyInRange(): Node | null {
+    protected findNearestEnemyInRange(): Node | null {
         let nearest: Node | null = null;
         let minDist = Infinity; //最小距离
 
@@ -107,7 +91,7 @@ export class WeaponBase extends Component {
     /**
      * 计算从枪口指向目标的方向向量（已归一化）
      */
-    private getDirectionToTarget(target: Node): Vec3 {
+    protected getDirectionToTarget(target: Node): Vec3 {
         const targetPos = target.getWorldPosition();
         const muzzlePos = this._muzzle.getWorldPosition();
         return this._tempVec3

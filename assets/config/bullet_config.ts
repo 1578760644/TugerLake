@@ -19,7 +19,7 @@ export const BULLET_CONFIG: Record<string, BulletConfig> = {
     // ===== 轻型 =====
     bullet_pistol: {
         speed: 300,
-        damage: 0.4,
+        damage: 0.5,
         collisionRadius: 8,
         piercing: false,
         explosive: false,
@@ -29,7 +29,7 @@ export const BULLET_CONFIG: Record<string, BulletConfig> = {
     },
     bullet_smg: {
         speed: 700,
-        damage: 0.2,
+        damage: 0.25,
         collisionRadius: 8,
         piercing: false,
         explosive: false,

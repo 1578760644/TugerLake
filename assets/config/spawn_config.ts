@@ -7,14 +7,14 @@ export const SPAWN_CONFIG: Record<string, {
 }> = {
     enemy_01: {
         startTime:0,
-        interval:1,
+        interval:2,
         minInterval:0.5,
         decay:0.005,
-        count:2
+        count:1
     },
     enemy_02: {
         startTime:30,
-        interval:0.5,
+        interval:1,
         minInterval:0.2,
         decay:0.005,
         count:1

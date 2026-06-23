@@ -1,7 +1,4 @@
 import { _decorator, Component, instantiate, Node, NodePool, Prefab, Vec3 } from 'cc';
-import { Bullet_01 } from '../prefabs/bullets/bullet_01';
-import { EnemyManager } from './enemy_manager';
-import { GameManager } from './game_manager';
 import { BULLET_CONFIG } from '../../config/bullet_config';
 import { BulletBase } from '../base/bullet_base';
 const { ccclass, property } = _decorator;
@@ -51,6 +48,10 @@ export class BulletManager extends Component {
             return;
         }
         const category = config.bulletcategory;
+        if (!category) {
+            console.warn(`[BulletManager]没有找到对应子弹类型：${type}`);
+            return;
+        }
         const prefab = this._categoryPrefabMap[category];
         const pool = this._poolMap.get(type);
         for (let i = 0; i < count; i++) {
@@ -95,7 +96,7 @@ export class BulletManager extends Component {
         bulletNode.setWorldPosition(muzzlePos);
         const bulletComp = bulletNode.getComponent(BulletBase);
         if (bulletComp) {
-            bulletComp.setDirection(direction);
+            bulletComp.init(config, direction, type);
         }
 
         this._activeBullets.push(bulletNode);
