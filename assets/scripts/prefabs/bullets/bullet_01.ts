@@ -7,8 +7,8 @@ const { ccclass, property } = _decorator;
 
 @ccclass('Bullet_01 ')
 export class Bullet_01 extends Component {
-    @property
-    private _speed: number = 400;
+
+    private _speed: number = 600;
 
     private _direction: Vec3 = new Vec3(1, 0, 0);
 

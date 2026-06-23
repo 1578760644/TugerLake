@@ -1,9 +1,10 @@
 export interface WeaponConfig {
     name: string;           // 显示名称
+    bulletType: string;     // 子弹类型
     prefabIndex: number;    // 预制体数组索引
     category: string;       // 武器种类 'pistol', 'smg', 'sniper', 'rifle', 'shotgun', 'rocket', 'melee'
     fireInterval: number;   // 攻击间隔（秒）
-    damage: number;         // 单发伤害
+    damage: number;         // 单发伤害（暂时弃用，伤害通过子弹伤害获取）
     attackRange: number     // 攻击范围（像素）
 }
 
@@ -11,6 +12,7 @@ export interface WeaponConfig {
 export const WEAPON_CONFIG: Record<string, WeaponConfig> = {
     pistol: {
         name: '手枪',
+        bulletType: 'bullet_pistol',
         prefabIndex: 0,
         category: 'pistol',
         fireInterval: 0.6,
@@ -19,6 +21,7 @@ export const WEAPON_CONFIG: Record<string, WeaponConfig> = {
     },
     smg: {
         name: '冲锋枪',
+        bulletType: 'bullet_smg',
         prefabIndex: 1,
         category: 'smg',
         fireInterval: 0.2,
@@ -27,6 +30,7 @@ export const WEAPON_CONFIG: Record<string, WeaponConfig> = {
     },
     sniper: {
         name: '狙击枪',
+        bulletType: 'bullet_sniper',
         prefabIndex: 2,
         category: 'sniper',
         fireInterval: 1,
@@ -35,6 +39,7 @@ export const WEAPON_CONFIG: Record<string, WeaponConfig> = {
     },
     rifle: {
         name: '步枪',
+        bulletType: 'bullet_rifle',
         prefabIndex: 3,
         category: 'rifle',
         fireInterval: 0.4,
@@ -43,6 +48,7 @@ export const WEAPON_CONFIG: Record<string, WeaponConfig> = {
     },
     shotgun: {
         name: '霰弹枪',
+        bulletType: 'bullet_shotgun',
         prefabIndex: 4,
         category: 'shotgun',
         fireInterval: 0.5,
@@ -51,6 +57,7 @@ export const WEAPON_CONFIG: Record<string, WeaponConfig> = {
     },
     rocket: {
         name: '火箭筒',
+        bulletType: 'bullet_rocket',
         prefabIndex: 5,
         category: 'rocket',
         fireInterval: 3,

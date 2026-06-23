@@ -5607,7 +5607,7 @@
     "_enabled": true,
     "__prefab": null,
     "bulletPrefab": {
-      "__uuid__": "da88d499-ef8a-4f7d-b873-73d081cbc262",
+      "__uuid__": "2dadecc3-f8d2-48de-a0cf-178371fab2df",
       "__expectedType__": "cc.Prefab"
     },
     "bulletParent": {
