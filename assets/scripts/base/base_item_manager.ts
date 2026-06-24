@@ -25,7 +25,7 @@ export class BaseItemManager extends Component {
 
     }
 
-    //在敌人死亡位置或特定位置生成物品
+    //在敌人死亡位置或特定位置生成物品，后续应该通过对象池来生成经验（所有大量的掉落物品）
     dropAt(position: Vec3) {
         let node = this._pool.get(); //取到当前子类
         if (!node) {

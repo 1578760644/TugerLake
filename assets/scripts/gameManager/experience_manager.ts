@@ -14,6 +14,8 @@ export class ExperienceManager extends BaseItemManager {
         ExperienceManager._inst = this;
     }
 
+
+    //不应该单独管理经验，而是直接管理所有生成物品的基类
 }
 
 

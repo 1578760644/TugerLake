@@ -88,16 +88,16 @@ export class WeaponManager extends Component {
      * @param prefab 预制体
      * @param isPrimary 是否为默认武器
      * @param slotIndex 插槽位置
-     * @param weaponType 武器类型（可选，若不传则使用预制体上已有的 weaponType）
+     * @param weaponType 武器类型
      */
-    private equipToSlot(prefab: Prefab, isPrimary: boolean, slotIndex: number, weaponType?: string) {
+    private equipToSlot(prefab: Prefab, isPrimary: boolean, slotIndex: number, weaponType: string) {
         const player = GameManager.inst.player;
         const weaponNode = instantiate(prefab);
         weaponNode.setParent(player);
 
         const weapon = weaponNode.getComponent(WeaponBase);
         if (weapon) {
-            // 如果提供了武器类型，则注入；否则保持预制体原有值（向后兼容）
+            // 如果提供了武器类型，则注入；否则保持预制体原有值（向后兼容）？
             if (weaponType) {
                 weapon.weaponType = weaponType;
             }
