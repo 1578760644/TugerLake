@@ -35,8 +35,20 @@ export class GameManager extends Component {
     }
 
     public onPlayerDead() {
-        // this.player.active = false;
         this._isGameOver = true;
+
+        // this.scheduleOnce(() => {
+        //     this.player.active = false;
+        // }, 0.5);
+    }
+
+    protected update(dt: number): void {
+        if (this._isGameOver) return;
+
+        const playComp = this.player.getComponent(Player);
+        if (playComp && playComp.isDead) {
+            this.onPlayerDead();
+        }
     }
 
 

@@ -31,7 +31,6 @@ export class Player extends Component {
             if (this._playerAnimation) {
                 this._playerAnimation.play('player_dead');
             }
-            GameManager.inst.onPlayerDead();
         }
     }
 
@@ -52,6 +51,10 @@ export class Player extends Component {
         for (let i = 0; i < this.hpNodes.length; i++) {
             this.hpNodes[i].active = true;
         }
+    }
+
+    public get isDead(): boolean {
+        return this._hp <= 0;
     }
 }
 
