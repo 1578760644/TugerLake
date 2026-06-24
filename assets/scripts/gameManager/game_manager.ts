@@ -35,7 +35,7 @@ export class GameManager extends Component {
     }
 
     public onPlayerDead() {
-        this.player.active = false;
+        // this.player.active = false;
         this._isGameOver = true;
     }
 

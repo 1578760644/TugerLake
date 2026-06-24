@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, UITransform } from 'cc';
+import { _decorator, Animation, Component, Node, UITransform } from 'cc';
 import { PLAYER_CONFIG } from '../../config/player_config';
 import { GameManager } from '../gameManager/game_manager';
 const { ccclass, property } = _decorator;
@@ -8,13 +8,16 @@ export class Player extends Component {
     @property([Node])
     public hpNodes: Node[] = [];
 
-
     private _hp: number;
     private _maxHp: number;
+
+    private _playerAnimation: Animation | null = null;
 
     protected onLoad(): void {
         this._maxHp = PLAYER_CONFIG.maxHp;
         this._hp = this._maxHp;
+
+        this._playerAnimation = this.node.getComponent(Animation);
     }
 
     public takeDamage(damage: number) {
@@ -24,6 +27,10 @@ export class Player extends Component {
         if (this._hp <= 0) {
             console.log(`dead`);
             this._hp = 0;
+            // 播放死亡动画
+            if (this._playerAnimation) {
+                this._playerAnimation.play('player_dead');
+            }
             GameManager.inst.onPlayerDead();
         }
     }

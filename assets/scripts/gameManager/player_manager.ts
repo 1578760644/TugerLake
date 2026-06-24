@@ -1,7 +1,6 @@
 import { _decorator, Animation, clamp, Component, EventKeyboard, EventTouch, Input, input, KeyCode, Node, Sprite, SpriteFrame, Vec2, Vec3 } from 'cc';
 import { PLAYER_CONFIG } from '../../config/player_config';
 import { GameManager } from './game_manager';
-import { WeaponBase } from '../base/weapon_base';
 const { ccclass, property } = _decorator;
 
 @ccclass('PlayerManager')
@@ -160,6 +159,10 @@ export class PlayerManager extends Component {
 
     private updateAnimation() {
         if (!this._playerAnimation || !this._playerSprite) return;
+
+        // 游戏结束时，不再处理移动动画
+        if (GameManager.inst.isGameActive) return;
+
         const isMoving = this._moveDirection.lengthSqr() > 0 //是否有移动
 
         // 播放移动动画，如果已经在播放则忽略
@@ -167,7 +170,7 @@ export class PlayerManager extends Component {
             // 正在移动：立即播放动画，重置停止计时器
             this._stopAnimFrames = 0;
             if (!this._isAnimPlaying) {
-                this._playerAnimation.play();
+                this._playerAnimation.play('player_move');
                 this._isAnimPlaying = true;
             }
         } else {
