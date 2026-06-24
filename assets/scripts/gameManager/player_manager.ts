@@ -1,4 +1,4 @@
-import { _decorator, clamp, Component, EventKeyboard, EventTouch, Input, input, KeyCode, Node, Vec2, Vec3 } from 'cc';
+import { _decorator, Animation, clamp, Component, EventKeyboard, EventTouch, Input, input, KeyCode, Node, Sprite, SpriteFrame, Vec2, Vec3 } from 'cc';
 import { PLAYER_CONFIG } from '../../config/player_config';
 import { GameManager } from './game_manager';
 import { WeaponBase } from '../base/weapon_base';
@@ -18,6 +18,17 @@ export class PlayerManager extends Component {
     private _activeTouches: Set<number> = new Set(); // 当前活跃的触摸点ID
     private _hasMovedThisFrame: boolean = false;    // 本帧是否有有效移动
 
+    //缓存动画组件和默认的spriteframe
+    private _playerAnimation: Animation | null = null;
+    private _playerSprite: Sprite | null = null;
+    private _defaultSpriteFrame: SpriteFrame | null = null;
+    private _isAnimPlaying: boolean = false;
+
+    //停止移动的时候_moveDirection 被清零会导致动画瞬间停止，下一帧又因为微小移动而触发动画。导致动画播放来回抽搐
+    //添加动画时间缓冲
+    private _stopAnimFrames: number = 0;
+    private readonly _stopAnimThreshold: number = 10; // 连续60帧没有移动才停止动画
+
     protected onLoad(): void {
         input.on(Input.EventType.TOUCH_START, this.onTouchStart, this);
         input.on(Input.EventType.TOUCH_MOVE, this.onTouchMove, this);
@@ -25,11 +36,25 @@ export class PlayerManager extends Component {
         input.on(Input.EventType.TOUCH_CANCEL, this.onTouchEnd, this);
         input.on(Input.EventType.KEY_DOWN, this.onKeyDown, this);
         input.on(Input.EventType.KEY_UP, this.onKeyUp, this);
+
+    }
+
+    protected start(): void {
+        const player = GameManager.inst.player;
+        if (player) {
+            this._playerAnimation = player.getComponent(Animation);
+            this._playerSprite = player.getComponent(Sprite);
+            if (this._playerSprite) {
+                this._defaultSpriteFrame = this._playerSprite.spriteFrame;
+            }
+        }
     }
 
     update(deltaTime: number) {
         if (GameManager.inst.isPause) return;
         this.applyMovement(deltaTime);
+
+        this.updateAnimation();
     }
 
     protected onDestroy(): void {
@@ -104,6 +129,7 @@ export class PlayerManager extends Component {
         //直接在触摸事件发生的时候处理位置更新
         this._moveDirection.set(this._tempVec2)
     }
+
     private onTouchEnd(event: EventTouch) {
         this._activeTouches.delete(event.getID());
         // 所有手指都离开屏幕
@@ -129,6 +155,33 @@ export class PlayerManager extends Component {
             case KeyCode.KEY_A: this._keys.a = false; break;
             case KeyCode.KEY_S: this._keys.s = false; break;
             case KeyCode.KEY_D: this._keys.d = false; break;
+        }
+    }
+
+    private updateAnimation() {
+        if (!this._playerAnimation || !this._playerSprite) return;
+        const isMoving = this._moveDirection.lengthSqr() > 0 //是否有移动
+
+        // 播放移动动画，如果已经在播放则忽略
+        if (isMoving) {
+            // 正在移动：立即播放动画，重置停止计时器
+            this._stopAnimFrames = 0;
+            if (!this._isAnimPlaying) {
+                this._playerAnimation.play();
+                this._isAnimPlaying = true;
+            }
+        } else {
+            this._stopAnimFrames++;
+            if (this._stopAnimFrames >= this._stopAnimThreshold && this._isAnimPlaying) {
+                this._playerAnimation.stop();
+                this._isAnimPlaying = false;
+
+                // 恢复默认站立图
+                if (this._defaultSpriteFrame) {
+                    this._playerSprite.spriteFrame = this._defaultSpriteFrame;
+                }
+            }
+
         }
     }
 }

@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, UITransform, Vec3 } from 'cc';
+import { _decorator, Component, Node, resources, Sprite, SpriteAtlas, SpriteFrame, UITransform, Vec3 } from 'cc';
 import { GameManager } from '../gameManager/game_manager';
 import { EnemyManager } from '../gameManager/enemy_manager';
 import { Player } from '../prefabs/player';
@@ -17,8 +17,48 @@ export class EnemyBase extends Component {
     private _myTransfrom: UITransform = null;
     private _attackCooldown: number = 0;
 
+    // 静态变量，整个游戏生命周期只加载一次 归属于类本身，而非类的实例
+    private static _atlas: SpriteAtlas = null;
+    private static _atlasLoaded: boolean = false;
+
+    // 帧动画相关
+    protected _idleFrame: SpriteFrame | null = null;   // 默认站立帧
+    protected _deadFrame: SpriteFrame | null = null;   // 死亡帧 
+    protected _moveFrames: SpriteFrame[] = [];         // 移动帧数组（几种敌人就是几张）
+    protected _currentFrameIndex: number = 0;          // 当前移动帧索引
+    protected _animTimer: number = 0;                  // 帧切换计时器
+    protected _animInterval: number = 0.2;             // 帧间隔（秒）
+    protected _sprite: Sprite | null = null;           // 缓存 Sprite 组件
+
+    /**
+    * 预加载敌人图集（在EnemyManager.onLoad中调用一次即可）
+     */
+    public static loadAtlas() {
+        if (EnemyBase._atlasLoaded) return;
+        resources.load('textures/enemy/enemy_atlas', SpriteAtlas, (err, atlas) => {
+            if (err) {
+                console.warn('敌人图集加载失败:', err);
+                return;
+            }
+            EnemyBase._atlas = atlas;
+            EnemyBase._atlasLoaded = true;
+        })
+    }
+
+    /**
+    * 根据帧名获取SpriteFrame
+    */
+    protected getSpriteFrameByName(name: string): SpriteFrame | null {
+        if (!EnemyBase._atlas) {
+            console.warn('敌人图集尚未加载');
+            return null;
+        }
+        return EnemyBase._atlas.getSpriteFrame(name);
+    }
+
     protected onLoad(): void {
         this._myTransfrom = this.node.getComponent(UITransform);
+        this._sprite = this.node.getComponent(Sprite);
     }
 
     protected update(dt: number): void {
@@ -38,14 +78,44 @@ export class EnemyBase extends Component {
         const offset = this._tempVec3.set(direction).multiplyScalar(dt * this._speed);
         this.node.setPosition(this.node.position.add(offset)); //当前位置+偏移量才是最终移动到的位置
 
+        //帧动画
+        const isMoving = this._speed > 0;
+        if (isMoving && this._moveFrames.length >= 2 && !this._isDead) {
+            this._animTimer += dt;
+            if (this._animTimer > this._animInterval) {
+                this._animTimer -= this._animInterval;
+                // 在 0 和 1 之间来回切换
+                this._currentFrameIndex = 1 - this._currentFrameIndex;
+                if (this._sprite) {
+                    this._sprite.spriteFrame = this._moveFrames[this._currentFrameIndex];
+                }
+            }
+        } else {
+            // 静止时恢复默认帧
+            if (this._sprite && this._idleFrame) {
+                this._sprite.spriteFrame = this._idleFrame;
+            }
+            this._animTimer = 0;
+            this._currentFrameIndex = 0;
+        }
+
         this.checkCollision();
     }
 
-    init(hp: number = 1, speed: number = 400, type: string = '') {
+    init(hp: number, speed: number, type: string) {
+        this.unscheduleAllCallbacks();  // 清除所有之前设下的 schedule
+
         this._hp = hp;
         this._speed = speed;
         this._enemyType = type;
         this._isDead = false;
+
+        // 重置动画状态
+        this._currentFrameIndex = 0;
+        this._animTimer = 0;
+        if (this._sprite && this._idleFrame) {
+            this._sprite.spriteFrame = this._idleFrame;
+        }
     }
 
     setDireciton(dir: Vec3) {
@@ -58,8 +128,17 @@ export class EnemyBase extends Component {
         if (this._hp <= 0) {
             this._isDead = true;
             ExperienceManager.inst.dropAt(this.node.getWorldPosition())
-            EnemyManager.inst.recycleEnemy(this.node, this._enemyType);
-            return;
+
+            // 显示死亡帧
+            if (this._sprite && this._deadFrame) {
+                this._sprite.spriteFrame = this._deadFrame;
+            }
+
+            this.scheduleOnce(() => {
+                EnemyManager.inst.recycleEnemy(this.node, this._enemyType);
+                return;
+            }, 0.2)
+
         }
     }
 

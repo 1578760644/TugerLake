@@ -28,6 +28,7 @@ export class EnemyManager extends Component {
     protected onLoad(): void {
         EnemyManager._inst = this;
 
+        EnemyBase.loadAtlas();   // 只此一次
         this.initPools();
         this.preloadAllEnemy(this.poolSize);
     }
