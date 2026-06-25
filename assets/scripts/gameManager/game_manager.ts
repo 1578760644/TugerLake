@@ -8,6 +8,7 @@ import { PLAYER_CONFIG } from '../config/player_config';
 import { WeaponManager } from './weapon_manager';
 import { SwitchPanel } from '../ui/switch_panel';
 import { GameData } from '../data/game_data';
+import { AudioMgr } from './sound_manager';
 const { ccclass, property } = _decorator;
 
 @ccclass('GameManager')
@@ -34,7 +35,6 @@ export class GameManager extends Component {
     private _isLevelUp: boolean = false;
 
     //游戏数据
-    private _killCount: number = 0;
     private _survivalTime: number = 0;
 
     private static _inst: GameManager;
@@ -44,6 +44,12 @@ export class GameManager extends Component {
 
     protected onLoad(): void {
         GameManager._inst = this;
+        AudioMgr.inst.preload([
+            'sounds/shoot/shoot-b',
+            'sounds/shoot/shoot-c',
+            'sounds/shoot/shoot-d',
+            'sounds/hurt/lose-b'
+        ]);
     }
 
     protected start(): void {

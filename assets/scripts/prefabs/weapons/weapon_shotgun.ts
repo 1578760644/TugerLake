@@ -1,6 +1,7 @@
 import { _decorator, Component, Node, Quat, Vec3 } from 'cc';
 import { WeaponBase } from '../../base/weapon_base';
 import { BulletManager } from '../../gameManager/bullet_manager';
+import { AudioMgr } from '../../gameManager/sound_manager';
 const { ccclass, property } = _decorator;
 
 @ccclass('Weapon_Shotgun')
@@ -23,7 +24,7 @@ export class Weapon_Shotgun extends WeaponBase {
 
             this.rotateTowards(baseDir);
             this.playFireAnim();
-
+            AudioMgr.inst.playOneShot('sounds/shoot/shoot-c',0.2);
             BulletManager.inst.spawnBullet(this._bulletType, this._muzzle, dir);
         }
     }

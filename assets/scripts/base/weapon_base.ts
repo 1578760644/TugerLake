@@ -1,8 +1,9 @@
-import { _decorator, Component, Node, tween, UITransform, Vec3 } from 'cc';
+import { _decorator, AudioClip, Component, Node, resources, tween, UITransform, Vec3 } from 'cc';
 import { GameManager } from '../gameManager/game_manager';
 import { EnemyManager } from '../gameManager/enemy_manager';
 import { BulletManager } from '../gameManager/bullet_manager';
 import { WEAPON_CONFIG } from '../config/weapon_config';
+import { AudioMgr } from '../gameManager/sound_manager';
 const { ccclass, property } = _decorator;
 
 @ccclass('WeaponBase')
@@ -67,6 +68,7 @@ export class WeaponBase extends Component {
         this.rotateTowards(direction);
         this.playFireAnim();
 
+        AudioMgr.inst.playOneShot('sounds/shoot/shoot-d',0.5);
         BulletManager.inst.spawnBullet(this._bulletType, this._muzzle, direction);
     }
 

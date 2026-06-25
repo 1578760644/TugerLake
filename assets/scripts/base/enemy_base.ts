@@ -4,6 +4,7 @@ import { EnemyManager } from '../gameManager/enemy_manager';
 import { Player } from '../prefabs/player';
 import { ExperienceManager } from '../gameManager/experience_manager';
 import { GameData } from '../data/game_data';
+import { AudioMgr } from '../gameManager/sound_manager';
 const { ccclass, property } = _decorator;
 
 @ccclass('EnemyBase')

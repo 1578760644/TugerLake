@@ -1,6 +1,7 @@
 import { _decorator, Animation, Component, Node, UITransform } from 'cc';
 import { PLAYER_CONFIG } from '../config/player_config';
 import { GameManager } from '../gameManager/game_manager';
+import { AudioMgr } from '../gameManager/sound_manager';
 const { ccclass, property } = _decorator;
 
 @ccclass('Player')
@@ -27,6 +28,8 @@ export class Player extends Component {
         if (this._hp <= 0) {
             console.log(`dead`);
             this._hp = 0;
+
+            AudioMgr.inst.playOneShot(`sounds/hurt/lose-b`,0.8)
             // 播放死亡动画
             if (this._playerAnimation) {
                 this._playerAnimation.play('player_dead');
