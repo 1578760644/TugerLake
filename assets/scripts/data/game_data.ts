@@ -44,6 +44,13 @@ export class GameData {
             sys.localStorage.setItem(this.BEST_SCORE_KEY, current.toString());
         }
     }
+
+    /**
+     * 清除所有游戏存储数据
+     */
+    public static clearAllData(): void {
+        sys.localStorage.removeItem(this.BEST_SCORE_KEY);
+    }
 }
 
 

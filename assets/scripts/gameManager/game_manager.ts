@@ -112,6 +112,17 @@ export class GameManager extends Component {
         GameData.setScore();
     }
 
+    public onClearDataButtonClick(): void {
+        GameData.clearAllData();
+        // 清空后刷新显示的最高分（变为 0）
+        if (this.scoreLabel) {
+            this.scoreLabel.string =
+                `存活时间:${this._survivalTime.toFixed(1)}s\n` +
+                `击杀敌人:${GameData.getScore()}\n` +
+                `最高击杀:${GameData.getBestScore()}`;
+        }
+    }
+
     addExperience(exp: number) {
         if (this._isLevelUp || this._isGameOver) return;
         this._currentExp += exp;
