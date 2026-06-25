@@ -19,6 +19,8 @@ export class GameManager extends Component {
 
     @property(Node)
     public startBg: Node = null;
+    @property(Node)
+    public endBg: Node = null;
 
     private _isGameOver: boolean = false;
     private _isPause: boolean = false;
@@ -37,12 +39,16 @@ export class GameManager extends Component {
         GameManager._inst = this;
     }
 
+    protected start(): void {
+        this._isPause = true;
+    }
+
     public onPlayerDead() {
         this._isGameOver = true;
 
-        // this.scheduleOnce(() => {
-        //     this.player.active = false;
-        // }, 0.5);
+        this.scheduleOnce(() => {
+            this.endBg.active = true;
+        }, 0.5);
     }
 
     protected update(dt: number): void {
@@ -56,6 +62,7 @@ export class GameManager extends Component {
 
     public startGame() {
         this.startBg.active = false;
+        this._isPause = false;
     }
 
 
@@ -80,6 +87,9 @@ export class GameManager extends Component {
         this._needExp = PLAYER_CONFIG.baseExp;
         this._playerLevel = 1;
         this.switchPanel.controllSwitchUI;
+
+        this.startBg.active = false;
+        this.endBg.active = false;
     }
 
     addExperience(exp: number) {
