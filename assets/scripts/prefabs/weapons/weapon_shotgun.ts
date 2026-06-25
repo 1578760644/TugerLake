@@ -20,6 +20,10 @@ export class Weapon_Shotgun extends WeaponBase {
         for (let i = 0; i < this._bulletCount; i++) {
             const angleOffset = -halfSpread + i * angleStep;
             const dir = this.rotateDirection(baseDir, angleOffset);
+
+            this.rotateTowards(baseDir);
+            this.playFireAnim();
+
             BulletManager.inst.spawnBullet(this._bulletType, this._muzzle, dir);
         }
     }

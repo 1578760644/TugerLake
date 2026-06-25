@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, UITransform, Vec3 } from 'cc';
+import { _decorator, Component, Node, tween, UITransform, Vec3 } from 'cc';
 import { GameManager } from '../gameManager/game_manager';
 import { EnemyManager } from '../gameManager/enemy_manager';
 import { BulletManager } from '../gameManager/bullet_manager';
@@ -19,6 +19,10 @@ export class WeaponBase extends Component {
 
     private _fireTimer: number = 0;
     private _tempVec3: Vec3 = new Vec3();
+
+    //利用tween动画
+    private _originalScaleX: number = 1.0; // 初始 x 缩放
+    private _originalScaleY: number = 1.0; // 初始 y 缩放
 
     /**
      * 根据 weaponType 从配置表读取伤害、攻击范围、攻击间隔等
@@ -51,7 +55,7 @@ export class WeaponBase extends Component {
     }
 
     /**
-     * 尝试攻击：在范围内找到最近敌人并发射子弹
+     * 尝试攻击：在范围内找到最近敌人并发射子弹（让武器指向敌人）
      * 子类可重写此方法实现不同攻击模式（散射、激光等）
      */
     protected tryAttack(): void {
@@ -59,6 +63,10 @@ export class WeaponBase extends Component {
         if (!target || !target.isValid) return;
 
         const direction = this.getDirectionToTarget(target);
+
+        this.rotateTowards(direction);
+        this.playFireAnim();
+
         BulletManager.inst.spawnBullet(this._bulletType, this._muzzle, direction);
     }
 
@@ -100,6 +108,30 @@ export class WeaponBase extends Component {
             .normalize();
     }
 
+    /**
+     * 让武器转向敌人出现方向（武器枪口位置默认朝右，便于计算后续再做改造）
+     * @param direction 目标方向
+     */
+    protected rotateTowards(direction: Vec3) {
+        const angle = Math.atan2(direction.y, direction.x) * 180 / Math.PI;
+        this.node.setRotationFromEuler(0, 0, angle)
+    }
+
+    /**
+     * 发射动画
+     */
+    protected playFireAnim() {
+        // 停止该节点上所有未完成的 tween，避免冲突
+        tween(this.node).stop();
+
+        this.node.setScale(this._originalScaleX * 0.7, this._originalScaleY * 0.7, 1);
+
+        // 用 tween 恢复到原始大小
+        tween(this.node)
+            .to(0.1, { scale: new Vec3(this._originalScaleX, this._originalScaleY, 1) })
+            .start();
+    }
+
 
     /**
      * 初始化武器位置、旋转、缩放
@@ -127,7 +159,7 @@ export class WeaponBase extends Component {
                 posX = playerHalfW + weaponHalfW + (isPrimary ? 10 : 0);
                 break;
             case 1: //左
-                scaleX = -0.8;  //水平翻转
+                scaleX = 0.8;
                 scaleY = 0.8;
                 posX = -(playerHalfW + weaponHalfW);
                 break;
@@ -151,6 +183,9 @@ export class WeaponBase extends Component {
         if (this._muzzle) {
             this._muzzle.setPosition(weaponHalfW, 0, 0);
         }
+
+        this._originalScaleX = scaleX;
+        this._originalScaleY = scaleY;
     }
 
     /** 获取枪口世界坐标，供子弹管理器使用 */

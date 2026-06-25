@@ -26,7 +26,7 @@ export class PlayerManager extends Component {
     //停止移动的时候_moveDirection 被清零会导致动画瞬间停止，下一帧又因为微小移动而触发动画。导致动画播放来回抽搐
     //添加动画时间缓冲
     private _stopAnimFrames: number = 0;
-    private readonly _stopAnimThreshold: number = 10; // 连续60帧没有移动才停止动画
+    private readonly _stopAnimThreshold: number = 15; // 连续60帧没有移动才停止动画
 
     protected onLoad(): void {
         input.on(Input.EventType.TOUCH_START, this.onTouchStart, this);

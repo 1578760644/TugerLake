@@ -7,6 +7,9 @@ const { ccclass, property } = _decorator;
 export class Weapon_Smg extends WeaponBase {
 
     protected tryAttack() {
+        
+        this.playFireAnim();
+
         // 始终朝世界 X 轴正方向发射,暂时先这么写
         BulletManager.inst.spawnBullet(this._bulletType, this._muzzle, Vec3.RIGHT);
         BulletManager.inst.spawnBullet(this._bulletType, this._muzzle, Vec3.RIGHT.clone().negative());
