@@ -1,6 +1,6 @@
 # Tuger Lake
 
-一个使用 Cocos Creator 3.8 + TypeScript 开发的 **2D 俯视角肉鸽幸存者游戏**，支持微信小游戏。
+一个使用 Cocos Creator 3.8 + TypeScript 开发的 **2D 肉鸽幸存者游戏**，支持微信小游戏。
 
 ![%E5%BC%80%E5%A7%8B%E7%95%8C%E9%9D%A2](https://raw.githubusercontent.com/1578760644/TugerLake/refs/heads/master/screenshot/%E5%BC%80%E5%A7%8B%E7%95%8C%E9%9D%A2.png)
 
