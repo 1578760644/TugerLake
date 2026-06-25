@@ -2,6 +2,12 @@
 
 一个使用 Cocos Creator 3.8 + TypeScript 开发的 **2D 俯视角肉鸽幸存者游戏**，支持微信小游戏。
 
+![%E5%BC%80%E5%A7%8B%E7%95%8C%E9%9D%A2](https://raw.githubusercontent.com/1578760644/TugerLake/refs/heads/master/screenshot/%E5%BC%80%E5%A7%8B%E7%95%8C%E9%9D%A2.png)
+
+![%E6%AD%A6%E5%99%A8%E9%80%89%E6%8B%A9](https://raw.githubusercontent.com/1578760644/TugerLake/refs/heads/master/screenshot/%E6%AD%A6%E5%99%A8%E9%80%89%E6%8B%A9.png)
+
+![%E6%B8%B8%E7%8E%A9](https://raw.githubusercontent.com/1578760644/TugerLake/refs/heads/master/screenshot/%E6%B8%B8%E7%8E%A9.png)
+
 ## 技术栈
 
 - **引擎**: Cocos Creator 3.8
