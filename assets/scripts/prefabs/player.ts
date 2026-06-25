@@ -1,5 +1,5 @@
 import { _decorator, Animation, Component, Node, UITransform } from 'cc';
-import { PLAYER_CONFIG } from '../../config/player_config';
+import { PLAYER_CONFIG } from '../config/player_config';
 import { GameManager } from '../gameManager/game_manager';
 const { ccclass, property } = _decorator;
 

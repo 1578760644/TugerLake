@@ -3,6 +3,7 @@ import { GameManager } from '../gameManager/game_manager';
 import { EnemyManager } from '../gameManager/enemy_manager';
 import { Player } from '../prefabs/player';
 import { ExperienceManager } from '../gameManager/experience_manager';
+import { GameData } from '../data/game_data';
 const { ccclass, property } = _decorator;
 
 @ccclass('EnemyBase')
@@ -127,7 +128,7 @@ export class EnemyBase extends Component {
         this._hp -= damage;
         if (this._hp <= 0) {
             this._isDead = true;
-            GameManager.inst.addKill();
+            GameData.addScore();
             ExperienceManager.inst.dropAt(this.node.getWorldPosition())
 
             // 显示死亡帧

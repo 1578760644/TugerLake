@@ -1,6 +1,6 @@
 import { _decorator, CCString, Component, Node } from 'cc';
 import { EnemyManager } from './enemy_manager';
-import { SPAWN_CONFIG } from '../../config/spawn_config';
+import { SPAWN_CONFIG } from '../config/spawn_config';
 import { GameManager } from './game_manager';
 const { ccclass, property } = _decorator;
 

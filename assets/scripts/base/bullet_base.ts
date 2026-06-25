@@ -1,5 +1,5 @@
 import { _decorator, clamp, Component, Node, UITransform, Vec3 } from 'cc';
-import { BULLET_CONFIG, BulletConfig } from '../../config/bullet_config';
+import { BULLET_CONFIG, BulletConfig } from '../config/bullet_config';
 import { BulletManager } from '../gameManager/bullet_manager';
 import { GameManager } from '../gameManager/game_manager';
 import { EnemyManager } from '../gameManager/enemy_manager';

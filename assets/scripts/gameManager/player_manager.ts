@@ -1,5 +1,5 @@
 import { _decorator, Animation, clamp, Component, EventKeyboard, EventTouch, Input, input, KeyCode, Node, Sprite, SpriteFrame, Vec2, Vec3 } from 'cc';
-import { PLAYER_CONFIG } from '../../config/player_config';
+import { PLAYER_CONFIG } from '../config/player_config';
 import { GameManager } from './game_manager';
 const { ccclass, property } = _decorator;
 

@@ -6414,7 +6414,7 @@
         "__id__": 184
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 192
@@ -6800,7 +6800,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 354,
-      "height": 275.2
+      "height": 330
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -6829,13 +6829,13 @@
       "b": 255,
       "a": 255
     },
-    "_string": "存活时间：\n击杀敌人：",
+    "_string": "存活时间：\n击杀敌人：\n最高击杀：",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 70,
     "_fontSize": 70,
     "_fontFamily": "Arial",
-    "_lineHeight": 120,
+    "_lineHeight": 100,
     "_overflow": 0,
     "_enableWrapText": true,
     "_font": null,

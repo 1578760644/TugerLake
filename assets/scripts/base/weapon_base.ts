@@ -2,7 +2,7 @@ import { _decorator, Component, Node, tween, UITransform, Vec3 } from 'cc';
 import { GameManager } from '../gameManager/game_manager';
 import { EnemyManager } from '../gameManager/enemy_manager';
 import { BulletManager } from '../gameManager/bullet_manager';
-import { WEAPON_CONFIG } from '../../config/weapon_config';
+import { WEAPON_CONFIG } from '../config/weapon_config';
 const { ccclass, property } = _decorator;
 
 @ccclass('WeaponBase')

@@ -4,9 +4,10 @@ import { EnemySpawner } from './enemy_spawner';
 import { EnemyManager } from './enemy_manager';
 import { BulletManager } from './bullet_manager';
 import { ExperienceManager } from './experience_manager';
-import { PLAYER_CONFIG } from '../../config/player_config';
+import { PLAYER_CONFIG } from '../config/player_config';
 import { WeaponManager } from './weapon_manager';
 import { SwitchPanel } from '../ui/switch_panel';
+import { GameData } from '../data/game_data';
 const { ccclass, property } = _decorator;
 
 @ccclass('GameManager')
@@ -56,8 +57,13 @@ export class GameManager extends Component {
             this.endBg.active = true;
         }, 0.5);
 
+        GameData.saveScore();
+
         if (this.scoreLabel) {
-            this.scoreLabel.string = `存活时间:${this._survivalTime.toFixed(1)}s\n击杀敌人:${this._killCount}`;
+            this.scoreLabel.string =
+                `存活时间:${this._survivalTime.toFixed(1)}s\n` +
+                `击杀敌人:${GameData.getScore()}\n` +
+                `最高击杀:${GameData.getBestScore()}`;
         }
     }
 
@@ -73,6 +79,8 @@ export class GameManager extends Component {
     public startGame() {
         this.startBg.active = false;
         this._isPause = false;
+
+        GameData.setScore();
     }
 
 
@@ -101,8 +109,7 @@ export class GameManager extends Component {
         this.startBg.active = false;
         this.endBg.active = false;
 
-        this._survivalTime = 0;
-        this._killCount = 0;
+        GameData.setScore();
     }
 
     addExperience(exp: number) {
@@ -150,10 +157,6 @@ export class GameManager extends Component {
 
         this._isLevelUp = false;
         this._isPause = false;
-    }
-
-    public addKill() {
-        this._killCount++;
     }
 
     public get isGameActive(): boolean {

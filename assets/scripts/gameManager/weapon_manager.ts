@@ -1,7 +1,7 @@
 import { _decorator, Component, instantiate, Node, Prefab, Sprite, SpriteFrame } from 'cc';
 import { GameManager } from './game_manager';
 import { WeaponBase } from '../base/weapon_base';
-import { WEAPON_CONFIG } from '../../config/weapon_config';
+import { WEAPON_CONFIG } from '../config/weapon_config';
 const { ccclass, property } = _decorator;
 
 @ccclass('WeaponManager')

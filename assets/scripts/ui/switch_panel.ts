@@ -1,7 +1,7 @@
 import { _decorator, Button, Component, Node, Sprite } from 'cc';
 import { GameManager } from '../gameManager/game_manager';
 import { WeaponManager } from '../gameManager/weapon_manager';
-import { WEAPON_CONFIG } from '../../config/weapon_config';
+import { WEAPON_CONFIG } from '../config/weapon_config';
 const { ccclass, property } = _decorator;
 
 @ccclass('SwitchPanel')

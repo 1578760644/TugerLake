@@ -1,7 +1,7 @@
 import { _decorator, Component, instantiate, Node, NodePool, Prefab, Vec3 } from 'cc';
 import { GameManager } from './game_manager';
 import { EnemyBase } from '../base/enemy_base';
-import { ENEMY_CONFIG } from '../../config/enemy_config';
+import { ENEMY_CONFIG } from '../config/enemy_config';
 const { ccclass, property } = _decorator;
 
 @ccclass('EnemyManager')

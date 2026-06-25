@@ -1,5 +1,5 @@
 import { _decorator, Component, instantiate, Node, NodePool, Prefab, Vec3 } from 'cc';
-import { BULLET_CONFIG } from '../../config/bullet_config';
+import { BULLET_CONFIG } from '../config/bullet_config';
 import { BulletBase } from '../base/bullet_base';
 const { ccclass, property } = _decorator;
 
