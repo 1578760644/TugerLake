@@ -40,11 +40,11 @@
 
 所有武器、子弹、敌人属性均由配置文件驱动，新增内容只需添加配置和预制体，**不修改业务代码**。
 
-assets/scripts/config/
-├── weapon_config.ts # 武器配置
-├── bullet_config.ts # 子弹配置
-├── enemy_config.ts # 敌人配置
-└── player_config.ts # 玩家配置
+**assets/scripts/config/**
+- `weapon_config.ts` — 武器配置
+- `bullet_config.ts` — 子弹配置
+- `enemy_config.ts` — 敌人配置
+- `player_config.ts` — 玩家配置
 
 ## 核心玩法
 
