@@ -5833,6 +5833,9 @@
     "endBg": {
       "__id__": 173
     },
+    "scoreLabel": {
+      "__id__": 183
+    },
     "_id": "35v0z1StZBWJB28QF19i5B"
   },
   {
@@ -6411,7 +6414,7 @@
         "__id__": 184
       }
     ],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 192
@@ -6738,7 +6741,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "game_data",
+    "_name": "score_label",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
@@ -6757,8 +6760,8 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -113.109,
-      "y": 104.565,
+      "x": -110,
+      "y": 100,
       "z": 0
     },
     "_lrot": {
@@ -6870,7 +6873,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Button",
+    "_name": "button",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
@@ -6925,7 +6928,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Label",
+    "_name": "label",
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {

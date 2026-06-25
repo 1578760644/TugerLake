@@ -127,6 +127,7 @@ export class EnemyBase extends Component {
         this._hp -= damage;
         if (this._hp <= 0) {
             this._isDead = true;
+            GameManager.inst.addKill();
             ExperienceManager.inst.dropAt(this.node.getWorldPosition())
 
             // 显示死亡帧

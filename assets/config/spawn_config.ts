@@ -13,7 +13,7 @@ export const SPAWN_CONFIG: Record<string, {
         count:1
     },
     enemy_02: {
-        startTime:5,
+        startTime:10,
         interval:2,
         minInterval:0.2,
         decay:0.005,

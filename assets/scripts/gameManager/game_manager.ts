@@ -1,4 +1,4 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component, Label, Node } from 'cc';
 import { Player } from '../prefabs/player';
 import { EnemySpawner } from './enemy_spawner';
 import { EnemyManager } from './enemy_manager';
@@ -21,6 +21,8 @@ export class GameManager extends Component {
     public startBg: Node = null;
     @property(Node)
     public endBg: Node = null;
+    @property(Label)
+    public scoreLabel: Label = null;
 
     private _isGameOver: boolean = false;
     private _isPause: boolean = false;
@@ -29,6 +31,10 @@ export class GameManager extends Component {
     private _needExp: number = PLAYER_CONFIG.baseExp;
     private _playerLevel: number = 1;
     private _isLevelUp: boolean = false;
+
+    //游戏数据
+    private _killCount: number = 0;
+    private _survivalTime: number = 0;
 
     private static _inst: GameManager;
     public static get inst(): GameManager {
@@ -49,11 +55,15 @@ export class GameManager extends Component {
         this.scheduleOnce(() => {
             this.endBg.active = true;
         }, 0.5);
+
+        if (this.scoreLabel) {
+            this.scoreLabel.string = `存活时间:${this._survivalTime.toFixed(1)}s\n击杀敌人:${this._killCount}`;
+        }
     }
 
     protected update(dt: number): void {
-        if (this._isGameOver) return;
-
+        if (this._isGameOver || this._isPause) return;
+        this._survivalTime += dt;
         const playComp = this.player.getComponent(Player);
         if (playComp && playComp.isDead) {
             this.onPlayerDead();
@@ -90,6 +100,9 @@ export class GameManager extends Component {
 
         this.startBg.active = false;
         this.endBg.active = false;
+
+        this._survivalTime = 0;
+        this._killCount = 0;
     }
 
     addExperience(exp: number) {
@@ -137,6 +150,10 @@ export class GameManager extends Component {
 
         this._isLevelUp = false;
         this._isPause = false;
+    }
+
+    public addKill() {
+        this._killCount++;
     }
 
     public get isGameActive(): boolean {
