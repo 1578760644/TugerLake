@@ -60,6 +60,10 @@ export class SwitchPanel extends Component {
         this.switchUI.active = false;
         GameManager.inst.applyUpgrade();
     }
+
+    public get controllSwitchUI() {
+        return this.switchUI.active = false;
+    }
 }
 
 

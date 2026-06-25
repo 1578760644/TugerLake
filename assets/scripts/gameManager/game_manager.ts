@@ -17,6 +17,9 @@ export class GameManager extends Component {
     @property(SwitchPanel)
     public switchPanel: SwitchPanel = null;
 
+    @property(Node)
+    public startBg: Node = null;
+
     private _isGameOver: boolean = false;
     private _isPause: boolean = false;
 
@@ -51,6 +54,10 @@ export class GameManager extends Component {
         }
     }
 
+    public startGame() {
+        this.startBg.active = false;
+    }
+
 
     public restart() {
         this.player.active = true;
@@ -72,6 +79,7 @@ export class GameManager extends Component {
         this._currentExp = 0;
         this._needExp = PLAYER_CONFIG.baseExp;
         this._playerLevel = 1;
+        this.switchPanel.controllSwitchUI;
     }
 
     addExperience(exp: number) {
